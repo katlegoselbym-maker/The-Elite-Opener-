@@ -1,0 +1,2184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Elite Opener™ — The AI Conversation System Real Estate Agents Are Using to Stop Losing Deals in the 47 Seconds After a Lead Goes Cold</title>
+<meta name="description" content="Your leads don't ghost you because the market is bad. They ghost you because you sent the wrong message at the wrong moment. The Elite Opener™ gives you the exact right words for every sales conversation, calibrated to your lead's behavior through the ConvoIQ Engine™ and BehaviorPrint™ system. One payment. Lifetime access.">
+<meta name="keywords" content="real estate conversation AI 2026, what to say when lead goes cold real estate, real estate objection handling system, ghost lead reactivation real estate, listing appointment intelligence, seller communication real estate, real estate follow up AI, ConvoIQ Engine real estate, BehaviorPrint real estate, Elite Opener real estate agent tool, how to recover cold leads real estate, real estate sales conversion tool">
+<meta property="og:title" content="The Elite Opener™ — The AI Conversation System for Real Estate Agents">
+<meta property="og:description" content="Seven modules. Every sales moment. Calibrated to your lead before a single word gets written.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --void: #04050a;
+  --deep: #070810;
+  --surface: #0c0e17;
+  --raised: #11141f;
+  --card: #171a26;
+  --border: rgba(212,175,95,0.1);
+  --border_hi: rgba(212,175,95,0.26);
+  --gold: #d4af5f;
+  --gold_bright: #eacc7c;
+  --gold_dim: rgba(212,175,95,0.07);
+  --gold_glow: rgba(212,175,95,0.12);
+  --cream: #ede8dc;
+  --cream_dim: rgba(237,232,220,0.55);
+  --muted: #52516a;
+  --white: #f8f3ec;
+  --green: #5dba8a;
+  --red: #c96a5a;
+  --red_dim: rgba(201,106,90,0.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  background: var(--void);
+  color: var(--cream);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 300;
+  line-height: 1.75;
+  overflow-x: hidden;
+}
+
+/* GRID TEXTURE */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 120px, rgba(255,255,255,0.006) 120px, rgba(255,255,255,0.006) 121px),
+    repeating-linear-gradient(90deg, transparent, transparent 120px, rgba(255,255,255,0.006) 120px, rgba(255,255,255,0.006) 121px);
+  pointer-events: none; z-index: 0;
+}
+
+.page { position: relative; z-index: 1; }
+
+/* UTILITY */
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+.wrap_sm { max-width: 760px; margin: 0 auto; padding: 0 48px; }
+.wrap_xs { max-width: 620px; margin: 0 auto; padding: 0 48px; }
+
+.gold { color: var(--gold); }
+.em { font-style: italic; }
+
+/* ANIMATIONS */
+@keyframes blink { 0%,100%{opacity:1}50%{opacity:.35} }
+@keyframes float { 0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)} }
+@keyframes shine {
+  from { transform: translateX(-100%) skewX(-12deg); }
+  to   { transform: translateX(220%) skewX(-12deg); }
+}
+@keyframes countUp { from { opacity:0; transform: translateY(10px); } to { opacity:1; transform: translateY(0); } }
+@keyframes revealUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes revealLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes borderPulse {
+  0%,100%{ box-shadow: 0 0 0 0 rgba(212,175,95,0); }
+  50%    { box-shadow: 0 0 0 6px rgba(212,175,95,0.06); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+}
+
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+/* ─────────────────────────────
+   ANNOUNCEMENT BAR
+───────────────────────────── */
+.ann_bar {
+  background: var(--gold);
+  padding: 9px 24px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--void);
+  position: relative;
+  overflow: hidden;
+}
+
+.ann_bar::after {
+  content: '';
+  position: absolute; top: 0; left: 0; bottom: 0;
+  width: 60px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation: shine 3s 1s ease-in-out infinite;
+}
+
+.ann_bar span { opacity: 0.65; margin: 0 12px; }
+
+/* ─────────────────────────────
+   NAV
+───────────────────────────── */
+.nav {
+  position: sticky; top: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 52px;
+  background: rgba(4,5,10,0.94);
+  backdrop-filter: blur(22px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav_logo {
+  font-family: 'Cormorant', serif;
+  font-size: 19px; font-weight: 600;
+  color: var(--white); letter-spacing: 0.04em;
+}
+
+.nav_logo b { color: var(--gold); font-weight: 600; }
+
+.nav_links {
+  display: flex; gap: 32px;
+  list-style: none;
+}
+
+.nav_links a {
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav_links a:hover { color: var(--cream); }
+
+.nav_cta {
+  background: var(--gold); color: var(--void);
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 10px 22px; border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.22s;
+  white-space: nowrap;
+}
+
+.nav_cta:hover { background: var(--gold_bright); transform: translateY(-1px); }
+
+.nav_live {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 10px; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--muted);
+}
+
+.live_dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green);
+  animation: blink 2.2s infinite;
+}
+
+/* ─────────────────────────────
+   HERO
+───────────────────────────── */
+.hero {
+  min-height: 94vh;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center;
+  padding: 100px 48px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 100% 70% at 50% -5%, rgba(212,175,95,0.07) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 20% 80%, rgba(212,175,95,0.025) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 50% at 80% 80%, rgba(93,186,138,0.02) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hero_badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--gold_dim);
+  border: 1px solid var(--border_hi);
+  border-radius: 40px;
+  padding: 7px 20px;
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.26em; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 40px;
+  animation: revealUp 0.8s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+.hero_badge::before {
+  content: '◈';
+  font-size: 10px;
+}
+
+.hero_h1 {
+  font-family: 'Cormorant', serif;
+  font-size: clamp(54px, 8.5vw, 108px);
+  font-weight: 700;
+  line-height: 0.9;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+  max-width: 1000px;
+  animation: revealUp 0.9s 0.1s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+.hero_h1 em {
+  font-style: italic;
+  color: var(--gold);
+  display: block;
+}
+
+.hero_sub {
+  font-family: 'Cormorant', serif;
+  font-size: clamp(20px, 2.8vw, 30px);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--cream_dim);
+  max-width: 680px;
+  line-height: 1.45;
+  margin-bottom: 52px;
+  animation: revealUp 0.9s 0.2s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+.hero_ctas {
+  display: flex; align-items: center; gap: 16px;
+  flex-wrap: wrap; justify-content: center;
+  margin-bottom: 32px;
+  animation: revealUp 0.9s 0.3s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+.cta_primary {
+  background: var(--gold); color: var(--void);
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px; font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 18px 40px; border-radius: 8px;
+  text-decoration: none;
+  position: relative; overflow: hidden;
+  transition: all 0.25s;
+  display: inline-block;
+}
+
+.cta_primary::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.5s;
+}
+
+.cta_primary:hover { background: var(--gold_bright); transform: translateY(-2px); box-shadow: 0 12px 40px rgba(212,175,95,0.25); }
+.cta_primary:hover::before { transform: translateX(100%); }
+
+.cta_ghost {
+  font-size: 13px; font-weight: 500;
+  color: var(--cream_dim);
+  text-decoration: none;
+  padding: 18px 20px;
+  border-bottom: 1px solid rgba(237,232,220,0.2);
+  transition: all 0.22s;
+}
+
+.cta_ghost:hover { color: var(--cream); border-bottom-color: var(--cream); }
+
+.hero_trust {
+  display: flex; align-items: center; gap: 24px;
+  font-size: 11px; font-weight: 500;
+  color: var(--muted); letter-spacing: 0.06em;
+  animation: revealUp 0.9s 0.4s cubic-bezier(0.16,1,0.3,1) both;
+}
+
+.trust_dot { color: var(--gold); font-size: 8px; }
+
+/* ─────────────────────────────
+   DIVIDER
+───────────────────────────── */
+.hr_line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border_hi), transparent);
+  margin: 0 auto;
+}
+
+/* ─────────────────────────────
+   SECTION LABELS
+───────────────────────────── */
+.s_label {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+.s_label::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+
+.s_h2 {
+  font-family: 'Cormorant', serif;
+  font-size: clamp(36px, 5vw, 62px);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.0;
+  letter-spacing: -0.01em;
+  margin-bottom: 20px;
+}
+
+.s_h2 em { font-style: italic; color: var(--gold); }
+
+.s_body {
+  font-size: 16px; font-weight: 300;
+  color: var(--cream_dim);
+  line-height: 1.8;
+  max-width: 620px;
+}
+
+.s_body p + p { margin-top: 16px; }
+
+/* ─────────────────────────────
+   THE 47-SECOND WINDOW
+───────────────────────────── */
+.problem_section {
+  padding: 120px 0;
+  background: linear-gradient(180deg, var(--void) 0%, rgba(7,5,10,1) 50%, var(--void) 100%);
+  position: relative;
+}
+
+.problem_section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 50% at 50% 50%, rgba(201,106,90,0.04) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.problem_number {
+  font-family: 'Cormorant', serif;
+  font-size: clamp(120px, 20vw, 240px);
+  font-weight: 700;
+  color: rgba(201,106,90,0.07);
+  line-height: 1;
+  position: absolute;
+  right: 4%;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  letter-spacing: -0.04em;
+  user-select: none;
+}
+
+.problem_grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.problem_story {
+  font-family: 'Cormorant', serif;
+  font-size: clamp(22px, 2.6vw, 30px);
+  font-weight: 400;
+  color: var(--cream);
+  line-height: 1.55;
+  max-width: 560px;
+}
+
+.problem_story strong {
+  color: var(--white);
+  font-weight: 700;
+}
+
+.problem_story em {
+  font-style: italic;
+  color: rgba(201,106,90,0.9);
+}
+
+.problem_bullets {
+  display: flex; flex-direction: column; gap: 16px;
+}
+
+.prob_bullet {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 18px 20px;
+  background: var(--red_dim);
+  border: 1px solid rgba(201,106,90,0.12);
+  border-radius: 10px;
+}
+
+.prob_icon {
+  color: var(--red);
+  font-size: 14px;
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.prob_text {
+  font-size: 14px; font-weight: 300;
+  color: var(--cream_dim);
+  line-height: 1.6;
+}
+
+.prob_text strong { color: var(--cream); font-weight: 500; }
+
+/* ─────────────────────────────
+   TRUTH STRIP
+───────────────────────────── */
+.truth_strip {
+  background: var(--gold);
+  padding: 56px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.truth_strip::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 40px,
+    rgba(0,0,0,0.03) 40px,
+    rgba(0,0,0,0.03) 41px
+  );
+}
+
+.truth_text {
+  font-family: 'Cormorant', serif;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 700;
+  color: var(--void);
+  line-height: 1.15;
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.truth_text em { font-style: italic; }
+
+/* ─────────────────────────────
+   MECHANISM
+───────────────────────────── */
+.mechanism_section { padding: 120px 0; }
+
+.mech_top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  margin-bottom: 80px;
+}
+
+.mech_engine_card {
+  background: var(--surface);
+  border: 1px solid var(--border_hi);
+  border-radius: 16px;
+  padding: 36px;
+  position: relative;
+  overflow: hidden;
+  animation: borderPulse 4s infinite;
+}
+
+.mech_engine_card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.engine_badge {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 18px;
+  display: flex; align-items: center; gap: 8px;
+}
+
+.engine_badge::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: blink 2s infinite;
+}
+
+.engine_name {
+  font-family: 'Cormorant', serif;
+  font-size: 34px; font-weight: 700;
+  color: var(--white);
+  line-height: 1.05;
+  margin-bottom: 12px;
+}
+
+.engine_name em { font-style: italic; color: var(--gold); }
+
+.engine_desc {
+  font-size: 14px; font-weight: 300;
+  color: var(--cream_dim);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.engine_flow {
+  display: flex; flex-direction: column; gap: 8px;
+}
+
+.flow_step {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 14px;
+  background: var(--gold_dim);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  font-size: 12px; font-weight: 400;
+  color: var(--cream);
+}
+
+.flow_num {
+  font-size: 9px; font-weight: 700;
+  color: var(--gold);
+  width: 18px; text-align: center;
+  flex-shrink: 0;
+}
+
+.flow_arrow {
+  color: var(--muted);
+  font-size: 11px;
+  text-align: center;
+  padding: 2px 0;
+}
+
+/* BEHAVIORPRINT CARD */
+.bp_card {
+  background: var(--raised);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+}
+
+.bp_card_badge {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+
+.bp_card_title {
+  font-family: 'Cormorant', serif;
+  font-size: 28px; font-weight: 700;
+  color: var(--white);
+  margin-bottom: 10px;
+  line-height: 1.1;
+}
+
+.bp_card_title em { font-style: italic; color: var(--gold); }
+
+.bp_card_desc {
+  font-size: 13px; color: var(--cream_dim);
+  line-height: 1.65; margin-bottom: 24px;
+}
+
+.bp_signal_list { display: flex; flex-direction: column; gap: 12px; }
+
+.bp_signal {
+  display: grid;
+  grid-template-columns: 28px 1fr;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.bp_signal_icon {
+  width: 28px; height: 28px;
+  background: var(--gold_dim);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.bp_signal_name {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--cream); margin-bottom: 2px;
+}
+
+.bp_signal_desc {
+  font-size: 11px; font-weight: 300;
+  color: var(--muted); line-height: 1.5;
+}
+
+/* ─────────────────────────────
+   LIVE DEMO
+───────────────────────────── */
+.demo_section {
+  padding: 100px 0;
+  background: var(--deep);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.demo_inner {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.demo_controls {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.demo_ctrl_label {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 12px;
+}
+
+.demo_groups {
+  display: flex; gap: 28px; flex-wrap: wrap;
+}
+
+.demo_group { }
+
+.demo_group_name {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 7px;
+}
+
+.demo_pills { display: flex; gap: 4px; flex-wrap: wrap; }
+
+.demo_pill {
+  font-size: 11px; font-weight: 500;
+  padding: 4px 11px; border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.06);
+  color: var(--muted); cursor: pointer;
+  transition: all 0.15s; user-select: none;
+}
+
+.demo_pill:hover { border-color: rgba(212,175,95,0.3); color: var(--cream); }
+.demo_pill.active {
+  background: var(--gold_dim);
+  border-color: rgba(212,175,95,0.4);
+  color: var(--gold);
+}
+
+.demo_output {
+  background: var(--surface);
+  border: 1px solid var(--border_hi);
+  border-radius: 14px;
+  padding: 28px;
+  min-height: 140px;
+  transition: all 0.3s;
+  position: relative;
+}
+
+.demo_output::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  border-radius: 14px 14px 0 0;
+}
+
+.demo_output_label {
+  font-size: 8px; font-weight: 700;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
+}
+
+.demo_output_label::before {
+  content: '';
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--green); animation: blink 2s infinite;
+}
+
+.demo_msg {
+  font-family: 'Cormorant', serif;
+  font-size: 22px; font-weight: 400;
+  color: var(--white); line-height: 1.5;
+  transition: opacity 0.25s;
+}
+
+.demo_bp_tag {
+  margin-top: 14px;
+  font-size: 11px; font-weight: 300;
+  color: var(--muted); font-style: italic;
+}
+
+/* ─────────────────────────────
+   MODULES
+───────────────────────────── */
+.modules_section { padding: 120px 0; }
+
+.modules_headline {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.modules_grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.mod_card_sales {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 28px 26px;
+  transition: all 0.25s;
+  position: relative;
+  overflow: hidden;
+}
+
+.mod_card_sales::before {
+  content: '';
+  position: absolute; top: 0; left: 0; bottom: 0;
+  width: 2px;
+  background: var(--gold);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+
+.mod_card_sales:hover { border-color: rgba(212,175,95,0.2); background: var(--raised); }
+.mod_card_sales:hover::before { transform: scaleY(1); }
+
+.mod_num_badge {
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 12px;
+  display: flex; align-items: center; gap: 8px;
+}
+
+.mod_card_icon_lg {
+  font-size: 18px; color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.mod_card_name_lg {
+  font-family: 'Cormorant', serif;
+  font-size: 22px; font-weight: 700;
+  color: var(--white);
+  line-height: 1.1; margin-bottom: 8px;
+}
+
+.mod_card_tagline {
+  font-size: 12px; font-weight: 300;
+  color: var(--cream_dim); line-height: 1.55;
+  margin-bottom: 14px;
+}
+
+.mod_card_use {
+  font-size: 10px; font-weight: 300;
+  color: var(--muted); line-height: 1.5;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.mod_card_use strong { color: var(--gold); font-weight: 600; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; }
+
+.mod_featured {
+  grid-column: span 1;
+  background: var(--raised);
+  border-color: rgba(212,175,95,0.18);
+}
+
+/* ─────────────────────────────
+   BEFORE / AFTER
+───────────────────────────── */
+.contrast_section {
+  padding: 100px 0;
+  background: var(--deep);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.contrast_grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  margin-top: 48px;
+}
+
+.phone_card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.phone_card.gold_card {
+  border-color: rgba(212,175,95,0.25);
+}
+
+.phone_top {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 12px;
+}
+
+.phone_avatar {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--raised);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+}
+
+.phone_name {
+  font-size: 13px; font-weight: 600; color: var(--white);
+}
+
+.phone_sub {
+  font-size: 10px; color: var(--muted);
+}
+
+.phone_messages {
+  padding: 20px;
+  display: flex; flex-direction: column; gap: 14px;
+  min-height: 180px;
+}
+
+.chat_you {
+  display: flex; flex-direction: column; align-items: flex-end;
+}
+
+.chat_them {
+  display: flex; flex-direction: column; align-items: flex-start;
+}
+
+.chat_lbl {
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 5px;
+}
+
+.bubble_you {
+  background: var(--raised);
+  border: 1px solid var(--border);
+  border-radius: 12px 12px 0 12px;
+  padding: 11px 14px;
+  font-size: 13px; font-weight: 300;
+  color: var(--cream_dim);
+  max-width: 85%;
+  line-height: 1.55;
+}
+
+.bubble_them {
+  background: var(--gold_dim);
+  border: 1px solid var(--border);
+  border-radius: 12px 12px 12px 0;
+  padding: 11px 14px;
+  font-size: 13px; font-weight: 300;
+  color: var(--cream);
+  max-width: 85%;
+  line-height: 1.55;
+}
+
+.bubble_dead {
+  background: rgba(201,106,90,0.05);
+  border: 1px solid rgba(201,106,90,0.12);
+  border-radius: 12px 12px 12px 0;
+  padding: 11px 14px;
+  font-size: 13px; color: var(--red);
+  max-width: 85%;
+}
+
+.phone_verdict {
+  padding: 14px 20px;
+  border-top: 1px solid var(--border);
+  font-size: 11px;
+  color: var(--muted);
+  font-style: italic;
+  text-align: center;
+}
+
+.phone_verdict.dead { color: rgba(201,106,90,0.7); }
+.phone_verdict.win  { color: var(--green); }
+
+/* ─────────────────────────────
+   FASCINATION BULLETS
+───────────────────────────── */
+.bullets_section { padding: 100px 0; }
+
+.bullets_grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 48px;
+}
+
+.bullet_item {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 18px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: border-color 0.2s;
+}
+
+.bullet_item:hover { border-color: rgba(212,175,95,0.18); }
+
+.bullet_arrow {
+  color: var(--gold); font-size: 14px;
+  margin-top: 2px; flex-shrink: 0;
+}
+
+.bullet_text {
+  font-size: 14px; font-weight: 300;
+  color: var(--cream_dim); line-height: 1.6;
+}
+
+.bullet_text strong { color: var(--white); font-weight: 500; }
+
+/* ─────────────────────────────
+   THE MATH
+───────────────────────────── */
+.math_section {
+  padding: 100px 0;
+  background: var(--deep);
+  border-top: 1px solid var(--border);
+}
+
+.math_box {
+  background: var(--surface);
+  border: 1px solid var(--border_hi);
+  border-radius: 16px;
+  padding: 48px;
+  position: relative;
+  overflow: hidden;
+  max-width: 760px;
+  margin: 48px auto 0;
+}
+
+.math_box::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent 0%, var(--gold) 30%, var(--gold_bright) 50%, var(--gold) 70%, transparent 100%);
+}
+
+.math_line {
+  font-family: 'Cormorant', serif;
+  font-size: clamp(18px, 2.5vw, 26px);
+  font-weight: 400;
+  color: var(--cream_dim);
+  line-height: 1.6;
+  text-align: center;
+}
+
+.math_line b { color: var(--white); font-weight: 700; }
+.math_line .gold { color: var(--gold); font-size: 1.25em; font-weight: 700; }
+
+.math_divider {
+  width: 60px; height: 1px;
+  background: var(--border);
+  margin: 20px auto;
+}
+
+.math_punchline {
+  font-family: 'Cormorant', serif;
+  font-size: clamp(22px, 3vw, 34px);
+  font-weight: 700; font-style: italic;
+  color: var(--gold);
+  text-align: center;
+  margin-top: 20px;
+}
+
+.math_footnote {
+  text-align: center;
+  font-size: 12px; font-weight: 300;
+  color: var(--muted); margin-top: 16px;
+  font-style: italic;
+}
+
+/* ─────────────────────────────
+   WHAT YOU GET
+───────────────────────────── */
+.get_section { padding: 100px 0; }
+
+.get_grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 48px;
+}
+
+.get_row {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 16px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+}
+
+.get_check {
+  color: var(--green); font-size: 13px;
+  flex-shrink: 0; margin-top: 1px;
+}
+
+.get_text { font-size: 13px; font-weight: 300; color: var(--cream_dim); line-height: 1.5; }
+.get_text strong { color: var(--white); font-weight: 500; display: block; margin-bottom: 2px; }
+
+/* ─────────────────────────────
+   PRICING
+───────────────────────────── */
+.pricing_section {
+  padding: 100px 0;
+  background: var(--deep);
+  border-top: 1px solid var(--border);
+}
+
+.price_card {
+  max-width: 540px;
+  margin: 48px auto 0;
+  background: var(--surface);
+  border: 1px solid var(--border_hi);
+  border-radius: 20px;
+  overflow: hidden;
+  animation: borderPulse 4s infinite;
+}
+
+.price_top {
+  padding: 40px 40px 32px;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.price_top::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent 0%, var(--gold) 30%, var(--gold_bright) 50%, var(--gold) 70%, transparent 100%);
+}
+
+.price_popular {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--void);
+  font-size: 9px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  padding: 4px 14px; border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.price_was {
+  font-size: 15px; font-weight: 300;
+  color: var(--muted);
+  text-decoration: line-through;
+  margin-bottom: 6px;
+}
+
+.price_amount {
+  display: flex; align-items: flex-start; justify-content: center;
+  gap: 4px; margin-bottom: 10px;
+}
+
+.price_curr {
+  font-family: 'Cormorant', serif;
+  font-size: 32px; font-weight: 600;
+  color: var(--gold); margin-top: 10px;
+}
+
+.price_num {
+  font-family: 'Cormorant', serif;
+  font-size: 96px; font-weight: 700;
+  color: var(--white); line-height: 1;
+}
+
+.price_period {
+  font-size: 13px; color: var(--muted);
+  margin-bottom: 16px;
+}
+
+.price_name {
+  font-family: 'Cormorant', serif;
+  font-size: 22px; font-weight: 600;
+  color: var(--white); margin-bottom: 10px;
+}
+
+.price_desc {
+  font-size: 13px; color: var(--cream_dim);
+  line-height: 1.6;
+}
+
+.price_body { padding: 32px 40px 40px; }
+
+.price_includes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+
+.pi {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 12px; color: var(--cream_dim);
+}
+
+.pi_check { color: var(--green); font-size: 12px; }
+
+.price_cta {
+  display: block; width: 100%;
+  background: var(--gold); color: var(--void);
+  font-family: 'Outfit', sans-serif;
+  font-size: 15px; font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 20px; border-radius: 10px;
+  text-decoration: none; text-align: center;
+  transition: all 0.25s;
+  position: relative; overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.price_cta::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.45s;
+}
+
+.price_cta:hover { background: var(--gold_bright); box-shadow: 0 10px 40px rgba(212,175,95,0.28); }
+.price_cta:hover::before { transform: translateX(100%); }
+
+.price_guarantee {
+  font-size: 12px; font-weight: 300;
+  color: var(--muted); line-height: 1.6;
+  text-align: center;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.price_guarantee strong { color: var(--cream_dim); }
+
+/* ─────────────────────────────
+   GUARANTEE
+───────────────────────────── */
+.guarantee_section { padding: 80px 0; }
+
+.guarantee_card {
+  max-width: 680px; margin: 0 auto;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 48px;
+  text-align: center;
+  position: relative;
+}
+
+.guarantee_badge {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: var(--gold_dim);
+  border: 2px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+  margin: 0 auto 24px;
+}
+
+.g_title {
+  font-family: 'Cormorant', serif;
+  font-size: 30px; font-weight: 700;
+  color: var(--white); margin-bottom: 16px;
+}
+
+.g_body {
+  font-size: 15px; font-weight: 300;
+  color: var(--cream_dim); line-height: 1.75;
+}
+
+/* ─────────────────────────────
+   FAQ
+───────────────────────────── */
+.faq_section { padding: 80px 0; }
+
+.faq_list {
+  max-width: 680px; margin: 48px auto 0;
+  display: flex; flex-direction: column; gap: 8px;
+}
+
+.faq_item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.faq_q {
+  padding: 18px 22px;
+  display: flex; align-items: center; justify-content: space-between;
+  cursor: pointer;
+  font-size: 14px; font-weight: 500;
+  color: var(--cream);
+  gap: 16px;
+  transition: background 0.18s;
+  user-select: none;
+}
+
+.faq_q:hover { background: var(--raised); }
+
+.faq_icon {
+  color: var(--gold); font-size: 18px;
+  transition: transform 0.25s;
+  flex-shrink: 0;
+}
+
+.faq_item.open .faq_icon { transform: rotate(45deg); }
+
+.faq_a {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.35s ease, padding 0.25s;
+  padding: 0 22px;
+}
+
+.faq_item.open .faq_a {
+  max-height: 400px;
+  padding: 0 22px 18px;
+}
+
+.faq_a_text {
+  font-size: 13px; font-weight: 300;
+  color: var(--cream_dim); line-height: 1.7;
+  padding-top: 4px;
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+}
+
+/* ─────────────────────────────
+   FINAL CTA
+───────────────────────────── */
+.final_section {
+  padding: 140px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.final_section::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(212,175,95,0.055) 0%, transparent 65%);
+  pointer-events: none;
+}
+
+.final_h {
+  font-family: 'Cormorant', serif;
+  font-size: clamp(40px, 6.5vw, 80px);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  max-width: 900px;
+  margin: 0 auto 24px;
+}
+
+.final_h em { font-style: italic; color: var(--gold); }
+
+.final_sub {
+  font-size: 16px; font-weight: 300;
+  color: var(--cream_dim); line-height: 1.75;
+  max-width: 520px; margin: 0 auto 48px;
+}
+
+/* ─────────────────────────────
+   SEO FOOTER
+───────────────────────────── */
+.seo_section {
+  background: var(--deep);
+  border-top: 1px solid var(--border);
+  padding: 48px 0;
+}
+
+.seo_inner {
+  max-width: 900px; margin: 0 auto; padding: 0 48px;
+}
+
+.seo_title {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 14px;
+}
+
+.seo_body p {
+  font-size: 12px; font-weight: 300;
+  color: rgba(90,89,106,0.9); line-height: 1.7;
+  margin-bottom: 10px;
+}
+
+.seo_kw {
+  font-size: 10px; color: rgba(90,89,106,0.5);
+  margin-top: 20px; line-height: 1.8;
+}
+
+/* FOOTER */
+.footer {
+  background: var(--void);
+  border-top: 1px solid var(--border);
+  padding: 28px 52px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.footer_logo {
+  font-family: 'Cormorant', serif;
+  font-size: 16px; font-weight: 600;
+  color: var(--muted);
+}
+
+.footer_logo b { color: var(--gold); }
+
+.footer_copy {
+  font-size: 11px; color: var(--muted);
+}
+
+.footer_links {
+  display: flex; gap: 20px;
+}
+
+.footer_links a {
+  font-size: 11px; color: var(--muted);
+  text-decoration: none; transition: color 0.18s;
+}
+
+.footer_links a:hover { color: var(--cream); }
+
+/* ─────────────────────────────
+   RESPONSIVE
+───────────────────────────── */
+@media (max-width: 900px) {
+  .wrap, .wrap_sm, .wrap_xs { padding: 0 24px; }
+  .nav { padding: 14px 24px; }
+  .nav_links { display: none; }
+  .problem_grid, .mech_top, .contrast_grid, .get_grid, .bullets_grid, .modules_grid { grid-template-columns: 1fr; }
+  .modules_grid { grid-template-columns: 1fr 1fr; }
+  .problem_number { display: none; }
+  .price_includes { grid-template-columns: 1fr; }
+  .footer { flex-direction: column; gap: 14px; text-align: center; }
+  .hero { padding: 80px 24px 60px; }
+}
+
+@media (max-width: 600px) {
+  .modules_grid { grid-template-columns: 1fr; }
+  .ann_bar { font-size: 10px; }
+  .hero_ctas { flex-direction: column; }
+  .demo_groups { flex-direction: column; }
+  .math_box { padding: 32px 24px; }
+  .price_card { margin: 24px 16px 0; }
+  .price_body { padding: 24px; }
+  .price_top { padding: 28px 24px; }
+  .guarantee_card { padding: 32px 24px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ANNOUNCEMENT BAR -->
+<div class="ann_bar">
+  Limited Founder Pricing: $197 One-Time Payment
+  <span>·</span>
+  Lifetime Access
+  <span>·</span>
+  No Subscriptions. Ever.
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav_logo">The Elite Opener<b>™</b></div>
+  <ul class="nav_links">
+    <li><a href="#problem">The Problem</a></li>
+    <li><a href="#how">How It Works</a></li>
+    <li><a href="#modules">Modules</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <div class="nav_live">
+    <div class="live_dot"></div>
+    ConvoIQ Engine Active
+  </div>
+  <a href="#pricing" class="nav_cta">Get Access — $197</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero_badge">The AI Conversation System Real Estate Agents Keep Secret</div>
+
+  <h1 class="hero_h1">
+    Your Leads Are Not Ghosting You.<br>
+    <em>You Ghosted Them First.</em>
+  </h1>
+
+  <p class="hero_sub">
+    With the wrong words. At the exact right moment.
+    The Elite Opener™ gives real estate agents the precise message for every sales situation,
+    calibrated to the lead in front of them before a single word gets written.
+  </p>
+
+  <div class="hero_ctas">
+    <a href="#pricing" class="cta_primary">Get The Elite Opener™ — $197 →</a>
+    <a href="#how" class="cta_ghost">See how it works ↓</a>
+  </div>
+
+  <div class="hero_trust">
+    <span>Seven modules</span>
+    <span class="trust_dot">◆</span>
+    <span>Every conversation moment covered</span>
+    <span class="trust_dot">◆</span>
+    <span>One-time payment</span>
+    <span class="trust_dot">◆</span>
+    <span>30-day guarantee</span>
+  </div>
+</section>
+
+<div class="hr_line"></div>
+
+<!-- THE 47-SECOND WINDOW -->
+<section class="problem_section" id="problem">
+  <div class="wrap">
+    <div class="problem_number" aria-hidden="true">47</div>
+
+    <div class="problem_grid">
+      <div>
+        <div class="s_label reveal">The Window Where Deals Die</div>
+        <h2 class="s_h2 reveal">
+          There Is a 47-Second Window Between a <em>Hot Lead</em> and a Dead One.
+        </h2>
+        <p class="problem_story reveal">
+          You get the notification. <strong>Someone is interested.</strong>
+          You pick up your phone, you open the message, and then something happens
+          that nobody in real estate talks about.
+          <br><br>
+          You stare at the screen.
+          <br><br>
+          You type something. You delete it.
+          You type again. You think about it.
+          You send whatever felt safest in the moment.
+          <br><br>
+          Three days later? <em>Silence.</em>
+          Three weeks later? Their name is on a sold listing.
+          <strong>Your competitor's sold listing.</strong>
+        </p>
+      </div>
+
+      <div class="problem_bullets reveal">
+        <div class="prob_bullet">
+          <div class="prob_icon">✕</div>
+          <div class="prob_text">
+            <strong>The problem is not your hustle.</strong>
+            You are working harder than most agents in your market and the commission is not matching the effort.
+          </div>
+        </div>
+        <div class="prob_bullet">
+          <div class="prob_icon">✕</div>
+          <div class="prob_text">
+            <strong>The problem is not your market knowledge.</strong>
+            You know your neighborhoods. You know the comps. You can answer any question they throw at you.
+          </div>
+        </div>
+        <div class="prob_bullet">
+          <div class="prob_icon">✕</div>
+          <div class="prob_text">
+            <strong>The problem is the forty-seven seconds after a lead does something that matters.</strong>
+            First contact. A cold gone quiet. An objection you did not see coming.
+            An anxious seller spiraling at 9pm on a Tuesday.
+          </div>
+        </div>
+        <div class="prob_bullet">
+          <div class="prob_icon">✕</div>
+          <div class="prob_text">
+            <strong>The top 10% of agents in your market are not smarter.</strong>
+            They just know what to say at the moments that count.
+            And those moments happen faster than anyone gives them credit for.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUTH STRIP -->
+<div class="truth_strip">
+  <p class="truth_text">
+    You are not losing deals to a better market.<br>
+    You are losing them to <em>better words at the right moment.</em>
+  </p>
+</div>
+
+<!-- MECHANISM -->
+<section class="mechanism_section" id="how">
+  <div class="wrap">
+    <div class="mech_top">
+      <div>
+        <div class="s_label reveal">The Engine Behind Every Output</div>
+        <h2 class="s_h2 reveal">
+          Most Tools Give You Words.<br>
+          <em>This One Reads Your Lead First.</em>
+        </h2>
+        <div class="s_body reveal">
+          <p>
+            Every other AI tool in real estate works the same way: you describe what you need, it generates something that sounds like every other agent's output, you paste it and hope.
+          </p>
+          <p>
+            The ConvoIQ Engine™ does something different. Before it writes a single word, it reads three behavioral signals from your lead. Because a buyer who texts in three-word bursts at midnight is a completely different human being from one who sends two-paragraph emails at 9am. Same template on both is the same as sending the wrong message to both.
+          </p>
+          <p>
+            That read is called the <strong class="gold">BehaviorPrint™</strong>. Three signals that calibrate every output to the specific person on the other end of that conversation. Not the lead type. Not the platform. The human being.
+          </p>
+        </div>
+      </div>
+
+      <div class="mech_engine_card reveal">
+        <div class="engine_badge">ConvoIQ Engine™ — Active</div>
+        <div class="engine_name">How It <em>Actually</em> Works</div>
+        <div class="engine_desc">
+          Three inputs in. One precisely calibrated output out.
+          No scripts. No templates. No copy-paste energy.
+        </div>
+        <div class="engine_flow">
+          <div class="flow_step">
+            <span class="flow_num">01</span>
+            Set your lead's BehaviorPrint™ (3 signals, 10 seconds)
+          </div>
+          <div class="flow_arrow">↓</div>
+          <div class="flow_step">
+            <span class="flow_num">02</span>
+            Choose the module that matches your situation
+          </div>
+          <div class="flow_arrow">↓</div>
+          <div class="flow_step">
+            <span class="flow_num">03</span>
+            Add 2 to 4 context details about this specific lead
+          </div>
+          <div class="flow_arrow">↓</div>
+          <div class="flow_step">
+            <span class="flow_num">04</span>
+            The Engine generates output built for this person and this moment
+          </div>
+          <div class="flow_arrow">↓</div>
+          <div class="flow_step">
+            <span class="flow_num">05</span>
+            Copy. Send. Watch what happens next.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BEHAVIORPRINT DETAIL -->
+    <div class="bp_card reveal">
+      <div class="bp_card_badge">◈ The BehaviorPrint™ System</div>
+      <div class="bp_card_title">
+        Three Signals That Tell the Engine<br>
+        <em>Exactly Who Is on the Other End</em>
+      </div>
+      <div class="bp_card_desc">
+        Most agents send the same follow-up message to every lead and wonder why
+        the conversion rate looks like a flat line. The BehaviorPrint™ changes this.
+        Set it once per lead. It recalibrates every output across all seven modules.
+      </div>
+      <div class="bp_signal_list">
+        <div class="bp_signal">
+          <div class="bp_signal_icon">⟳</div>
+          <div>
+            <div class="bp_signal_name">Signal 1: Response Speed</div>
+            <div class="bp_signal_desc">
+              Did they reply in 5 minutes or 5 days? A lead who responds immediately is wired for engagement and can handle a more direct approach. A lead who took a week is already halfway out the door. The Engine adjusts the pressure, the length, and the tone accordingly. Same situation, different human, different message.
+            </div>
+          </div>
+        </div>
+        <div class="bp_signal">
+          <div class="bp_signal_icon">◫</div>
+          <div>
+            <div class="bp_signal_name">Signal 2: Message Style</div>
+            <div class="bp_signal_desc">
+              Short and punchy, or three paragraphs and a question? People who write in short bursts feel pressured by long messages. People who write in detail feel dismissed by short ones. The Engine mirrors their native communication style so your message feels like it was written specifically for them, because it was.
+            </div>
+          </div>
+        </div>
+        <div class="bp_signal">
+          <div class="bp_signal_icon">◉</div>
+          <div>
+            <div class="bp_signal_name">Signal 3: Platform</div>
+            <div class="bp_signal_desc">
+              A great SMS message lands flat as an email. An email-length message in an Instagram DM gets ignored before the second sentence. Platform shapes register, length, and formality. The Engine writes for the environment this lead actually lives in, not the one you happen to prefer.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE DEMO -->
+<section class="demo_section">
+  <div class="demo_inner">
+    <div class="s_label reveal" style="justify-content:center;">The BehaviorPrint™ in Action</div>
+    <h2 class="s_h2 reveal" style="text-align:center;max-width:100%;">Change the Signals. Watch the Output Change.<br><em>Same lead. Completely different message.</em></h2>
+    <p style="text-align:center;color:var(--cream_dim);font-size:14px;margin-bottom:36px;font-weight:300;" class="reveal">This is a preview of the ConvoIQ Engine™ output system. Every message below is calibrated to the signals you set on the left.</p>
+
+    <div class="demo_controls reveal">
+      <div class="demo_ctrl_label">◈ Set the BehaviorPrint™ for this lead</div>
+      <div class="demo_groups">
+        <div class="demo_group">
+          <div class="demo_group_name">Response Speed</div>
+          <div class="demo_pills">
+            <div class="demo_pill active" data-group="speed" data-val="hot">Hot (Same Day)</div>
+            <div class="demo_pill" data-group="speed" data-val="warm">Warm (Few Days)</div>
+            <div class="demo_pill" data-group="speed" data-val="cold">Cold (Week+)</div>
+            <div class="demo_pill" data-group="speed" data-val="ghost">Ghost (Silent)</div>
+          </div>
+        </div>
+        <div class="demo_group">
+          <div class="demo_group_name">Message Style</div>
+          <div class="demo_pills">
+            <div class="demo_pill active" data-group="style" data-val="short">Short</div>
+            <div class="demo_pill" data-group="style" data-val="casual">Casual</div>
+            <div class="demo_pill" data-group="style" data-val="detailed">Detailed</div>
+          </div>
+        </div>
+        <div class="demo_group">
+          <div class="demo_group_name">Platform</div>
+          <div class="demo_pills">
+            <div class="demo_pill active" data-group="platform" data-val="sms">SMS</div>
+            <div class="demo_pill" data-group="platform" data-val="email">Email</div>
+            <div class="demo_pill" data-group="platform" data-val="instagram">Instagram DM</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo_output reveal">
+      <div class="demo_output_label">ConvoIQ Engine™ Output — Opener Module</div>
+      <div class="demo_msg" id="demo_msg">Marcus, something came up on that property I want to flag for you. The school zone situation is actually better than the listing shows. Worth 2 minutes if you have them?</div>
+      <div class="demo_bp_tag" id="demo_bp_tag">Hot lead · Short style · SMS · The Engine kept this under 35 words and led with a specific value signal, not a check-in.</div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULES -->
+<section class="modules_section" id="modules">
+  <div class="wrap">
+    <div class="modules_headline">
+      <div class="s_label reveal" style="justify-content:center;">Seven Modules. Every Sales Moment.</div>
+      <h2 class="s_h2 reveal" style="text-align:center;max-width:100%;">Every Conversation Situation<br>a Real Estate Agent Faces. <em>Handled.</em></h2>
+      <p style="text-align:center;color:var(--cream_dim);font-size:15px;font-weight:300;max-width:580px;margin:0 auto;" class="reveal">These are not scripts. They are not templates. They are precision outputs for the exact moment you are in, calibrated to the exact person you are dealing with.</p>
+    </div>
+
+    <div class="modules_grid">
+      <div class="mod_card_sales reveal">
+        <div class="mod_num_badge"><span>◎</span> Module 01</div>
+        <div class="mod_card_name_lg">The Opener</div>
+        <div class="mod_card_tagline">First contact that lands in the reply, not the delete pile. Three variants per lead so you always have something that fits the moment.</div>
+        <div class="mod_card_use"><strong>Use when:</strong> New lead. First message. You have their contact and nothing else yet.</div>
+      </div>
+
+      <div class="mod_card_sales reveal">
+        <div class="mod_num_badge"><span>◈</span> Module 02</div>
+        <div class="mod_card_name_lg">The Qualifier</div>
+        <div class="mod_card_tagline">Know who you are dealing with before you spend an hour on them. Five questions that feel like conversation, not a mortgage application.</div>
+        <div class="mod_card_use"><strong>Use when:</strong> They responded and you need to know how serious they actually are.</div>
+      </div>
+
+      <div class="mod_card_sales reveal">
+        <div class="mod_num_badge"><span>◆</span> Module 03</div>
+        <div class="mod_card_name_lg">Objection Crusher</div>
+        <div class="mod_card_tagline">Turn the no into a next step. Eight common objections handled, plus a custom input for the one you never saw coming. The real fear behind every objection, named and addressed.</div>
+        <div class="mod_card_use"><strong>Use when:</strong> They pushed back and the deal is still alive but barely.</div>
+      </div>
+
+      <div class="mod_card_sales reveal mod_featured">
+        <div class="mod_num_badge"><span>◇</span> Module 04</div>
+        <div class="mod_card_name_lg">Ghost Protocol</div>
+        <div class="mod_card_tagline">Three messages on a calibrated timeline for leads at every stage of silence. Built on the psychology of why people go quiet, not just how to make noise. The 3-month ghost gets a completely different sequence than the 3-day ghost.</div>
+        <div class="mod_card_use"><strong>Use when:</strong> They stopped responding and you need them back without becoming that agent.</div>
+      </div>
+
+      <div class="mod_card_sales reveal">
+        <div class="mod_num_badge"><span>●</span> Module 05</div>
+        <div class="mod_card_name_lg">Seller Whisperer</div>
+        <div class="mod_card_tagline">Handle the panicking seller before they pull the listing. What to say, what not to say, and the next 24-hour action that demonstrates value faster than any price drop conversation.</div>
+        <div class="mod_card_use"><strong>Use when:</strong> Your seller is spiraling, threatening to drop price, or threatening to walk.</div>
+      </div>
+
+      <div class="mod_card_sales reveal">
+        <div class="mod_num_badge"><span>▲</span> Module 06</div>
+        <div class="mod_card_name_lg">Pre-Appointment Intel</div>
+        <div class="mod_card_tagline">Walk into the listing appointment already knowing what they are afraid of. Seller psychology profile, opening statement, commission defense, and the one question that tells you whether you have this listing before you leave the room.</div>
+        <div class="mod_card_use"><strong>Use when:</strong> You have a listing appointment and you want to own it from the first 30 seconds.</div>
+      </div>
+
+      <div class="mod_card_sales reveal" style="grid-column: span 1;">
+        <div class="mod_num_badge"><span>★</span> Module 07</div>
+        <div class="mod_card_name_lg">The Close</div>
+        <div class="mod_card_tagline">Nine buyer types. Nine closing approaches built around how each one actually makes decisions. Not pressure tactics from a sales book written in 1994. The alternative close, the primary close, and the one question if they are still undecided after both.</div>
+        <div class="mod_card_use"><strong>Use when:</strong> They love the property but something is stalling the decision right now.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEFORE / AFTER -->
+<section class="contrast_section">
+  <div class="wrap_sm">
+    <div class="s_label reveal" style="justify-content:center;">The Difference in Practice</div>
+    <h2 class="s_h2 reveal" style="text-align:center;max-width:100%;">Same Lead. Same Situation.<br><em>Completely Different Result.</em></h2>
+
+    <div class="contrast_grid reveal">
+      <div class="phone_card">
+        <div class="phone_top">
+          <div class="phone_avatar">👤</div>
+          <div>
+            <div class="phone_name">Without The Elite Opener</div>
+            <div class="phone_sub">What most agents send</div>
+          </div>
+        </div>
+        <div class="phone_messages">
+          <div class="chat_you">
+            <div class="chat_lbl">You</div>
+            <div class="bubble_you">Hey Marcus just checking in wanted to see if you had any questions about the property I sent over 😊</div>
+          </div>
+          <div class="chat_them">
+            <div class="chat_lbl">Marcus</div>
+            <div class="bubble_dead">…</div>
+          </div>
+        </div>
+        <div class="phone_verdict dead">Three days of silence. Commission assumed lost. Listing ends up on a competitor's sold page.</div>
+      </div>
+
+      <div class="phone_card gold_card">
+        <div class="phone_top">
+          <div class="phone_avatar">⚡</div>
+          <div>
+            <div class="phone_name">With The Elite Opener</div>
+            <div class="phone_sub">ConvoIQ Engine — Ghost Protocol variant</div>
+          </div>
+        </div>
+        <div class="phone_messages">
+          <div class="chat_you">
+            <div class="chat_lbl">You</div>
+            <div class="bubble_you">Marcus, something came up on that property I want to flag for you. The school zone situation is actually better than the listing shows. Worth 2 minutes if you have them?</div>
+          </div>
+          <div class="chat_them">
+            <div class="chat_lbl">Marcus</div>
+            <div class="bubble_them">Oh really? Yeah let's talk. What's the story?</div>
+          </div>
+        </div>
+        <div class="phone_verdict win">Same day reply. Showing booked. Conversation alive. Commission intact.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FASCINATION BULLETS -->
+<section class="bullets_section">
+  <div class="wrap">
+    <div class="s_label reveal">What You Are Actually Getting</div>
+    <h2 class="s_h2 reveal">The Things Nobody Says Out Loud<br>About <em>Winning Conversations.</em></h2>
+
+    <div class="bullets_grid">
+      <div class="bullet_item reveal">
+        <div class="bullet_arrow">▸</div>
+        <div class="bullet_text"><strong>Why "just checking in" is the most expensive sentence in real estate.</strong> What the data says about what actually gets replies versus what makes you look like a vendor, not an advisor.</div>
+      </div>
+      <div class="bullet_item reveal">
+        <div class="bullet_arrow">▸</div>
+        <div class="bullet_text"><strong>The psychology of why good leads go quiet</strong> and why the standard follow up sequence is designed exactly backwards. A three-month ghost needs a completely different message than a three-day ghost.</div>
+      </div>
+      <div class="bullet_item reveal">
+        <div class="bullet_arrow">▸</div>
+        <div class="bullet_text"><strong>The real objection behind "the commission is too high"</strong> and why arguing the value of your services is the worst possible response. What they are actually afraid of, named and addressed.</div>
+      </div>
+      <div class="bullet_item reveal">
+        <div class="bullet_arrow">▸</div>
+        <div class="bullet_text"><strong>What the top 10% of agents say in the first 30 seconds of a listing appointment</strong> that immediately separates them from every other agent who walked through that door that week.</div>
+      </div>
+      <div class="bullet_item reveal">
+        <div class="bullet_arrow">▸</div>
+        <div class="bullet_text"><strong>Why anxious sellers need to hear something specific, not something reassuring.</strong> The phrase most agents use when a seller panics that immediately destroys the trust they spent months building.</div>
+      </div>
+      <div class="bullet_item reveal">
+        <div class="bullet_arrow">▸</div>
+        <div class="bullet_text"><strong>The one question that tells you whether you have a listing before you leave the appointment.</strong> Every top producer knows it. Most agents never figure it out until year four.</div>
+      </div>
+      <div class="bullet_item reveal">
+        <div class="bullet_arrow">▸</div>
+        <div class="bullet_text"><strong>How a first-time buyer and a move-up buyer need completely different closing approaches</strong> even when they are looking at the exact same property. The same close on both is why your conversion rate is a flat line.</div>
+      </div>
+      <div class="bullet_item reveal">
+        <div class="bullet_arrow">▸</div>
+        <div class="bullet_text"><strong>Why the agents crushing their numbers in 2026 are not better at real estate.</strong> They are better at one specific skill that nobody teaches in licensing school and nobody talks about at broker meetings.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE MATH -->
+<section class="math_section">
+  <div class="wrap_xs">
+    <div class="s_label reveal" style="justify-content:center;">The Arithmetic That Ends the Conversation</div>
+    <h2 class="s_h2 reveal" style="text-align:center;max-width:100%;">One Conversation That Should Have Won<br>But Did Not <em>This Month.</em></h2>
+
+    <div class="math_box reveal">
+      <div class="math_line">
+        Average commission on a US residential deal sits between <b>$8,500</b> and <b class="gold">$18,000</b>.
+      </div>
+      <div class="math_divider"></div>
+      <div class="math_line">
+        The Elite Opener™ costs <span class="gold">$197</span> once.<br>
+        One recovered conversation this month produces <b>$8,500 to $18,000</b>.<br>
+        That is a return of <span class="gold">43x to 91x</span> from a single recovered deal.
+      </div>
+      <div class="math_divider"></div>
+      <div class="math_punchline">At two recovered conversations per quarter, this pays for itself 172 times over.</div>
+      <div class="math_footnote">This is not a sales argument. It is arithmetic. Arithmetic does not care about market conditions.</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section class="get_section" id="includes">
+  <div class="wrap">
+    <div class="s_label reveal">Everything Inside</div>
+    <h2 class="s_h2 reveal">The Complete Conversation System.<br><em>Nothing Left Out.</em></h2>
+
+    <div class="get_grid">
+      <div class="get_row reveal"><div class="get_check">✓</div><div class="get_text"><strong>The Elite Opener™ Full System Access</strong>All seven modules. Unlimited use. Every conversation situation a real estate agent faces from first contact to final close.</div></div>
+      <div class="get_row reveal"><div class="get_check">✓</div><div class="get_text"><strong>The ConvoIQ Engine™ Running Behind Every Output</strong>The AI intelligence layer that processes your lead's situation and generates output built for this specific person, this specific conversation, this specific moment.</div></div>
+      <div class="get_row reveal"><div class="get_check">✓</div><div class="get_text"><strong>The BehaviorPrint™ System</strong>Three signals per lead. Response speed, message style, and platform. Every output calibrated to who is actually on the other end before a word gets written.</div></div>
+      <div class="get_row reveal"><div class="get_check">✓</div><div class="get_text"><strong>The Opener — Three Variants Per Lead</strong>First contact across every platform and lead type that reads human, not automated.</div></div>
+      <div class="get_row reveal"><div class="get_check">✓</div><div class="get_text"><strong>Ghost Protocol — Timed Reactivation Sequences</strong>Three messages on a calibrated timeline. Silence duration determines the entire strategy.</div></div>
+      <div class="get_row reveal"><div class="get_check">✓</div><div class="get_text"><strong>Objection Crusher — Eight Objections Plus Custom</strong>Every common objection reframed. The real fear named. The follow up question ready. The momentum preserved.</div></div>
+      <div class="get_row reveal"><div class="get_check">✓</div><div class="get_text"><strong>Pre-Appointment Intelligence Package</strong>Seller psychology profile, opening statement, commission defense, closing statement, and the one question per appointment.</div></div>
+      <div class="get_row reveal"><div class="get_check">✓</div><div class="get_text"><strong>The Close — Nine Buyer Type Scripts</strong>Primary close, alternative close, and the one question for undecided buyers. All built around buyer decision wiring.</div></div>
+      <div class="get_row reveal"><div class="get_check">✓</div><div class="get_text"><strong>Session Log — Build a Full Deal Playbook</strong>Save every output from every module in one session. Export your entire lead playbook to clipboard in one click.</div></div>
+      <div class="get_row reveal"><div class="get_check">✓</div><div class="get_text"><strong>Lifetime Access — All Future Updates Included</strong>One payment. Every improvement, every new module, every upgrade to the ConvoIQ Engine™. Yours. Forever.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing_section" id="pricing">
+  <div class="wrap_xs">
+    <div class="s_label reveal" style="justify-content:center;">One Decision</div>
+    <h2 class="s_h2 reveal" style="text-align:center;max-width:100%;">
+      One Payment. Seven Modules.<br><em>Every Conversation. Forever.</em>
+    </h2>
+
+    <div class="price_card reveal">
+      <div class="price_top">
+        <div class="price_popular">Most Popular</div>
+        <div class="price_was">Usually $397</div>
+        <div class="price_amount">
+          <div class="price_curr">$</div>
+          <div class="price_num">197</div>
+        </div>
+        <div class="price_period">One-time payment. Lifetime access.</div>
+        <div class="price_name">The Elite Opener™ Complete System</div>
+        <div class="price_desc">Every module. The ConvoIQ Engine™. The BehaviorPrint™ system. Every conversation moment a real estate agent faces. Yours for life.</div>
+      </div>
+      <div class="price_body">
+        <div class="price_includes">
+          <div class="pi"><span class="pi_check">✓</span> The Opener — 3 variants</div>
+          <div class="pi"><span class="pi_check">✓</span> The Qualifier sequence</div>
+          <div class="pi"><span class="pi_check">✓</span> Objection Crusher</div>
+          <div class="pi"><span class="pi_check">✓</span> Ghost Protocol</div>
+          <div class="pi"><span class="pi_check">✓</span> Seller Whisperer</div>
+          <div class="pi"><span class="pi_check">✓</span> Pre-Appointment Intel</div>
+          <div class="pi"><span class="pi_check">✓</span> The Close — 9 buyer types</div>
+          <div class="pi"><span class="pi_check">✓</span> ConvoIQ Engine™</div>
+          <div class="pi"><span class="pi_check">✓</span> BehaviorPrint™ system</div>
+          <div class="pi"><span class="pi_check">✓</span> Session Log</div>
+          <div class="pi"><span class="pi_check">✓</span> Unlimited use</div>
+          <div class="pi"><span class="pi_check">✓</span> All future updates</div>
+        </div>
+        <a href="#" class="price_cta">Get The Elite Opener™ — $197 →</a>
+        <div class="price_guarantee">
+          <strong>30-day money back guarantee.</strong> Use all seven modules for a full month.
+          Run it on your worst lead, your coldest ghost, and your next listing appointment.
+          If it does not change how those conversations go, ask for a full refund.
+          No forms. No questions. No "explain your use case."
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="guarantee_section">
+  <div class="wrap">
+    <div class="guarantee_card reveal">
+      <div class="guarantee_badge">✦</div>
+      <div class="g_title">The Straight Guarantee</div>
+      <div class="g_body">
+        Use every module for 30 full days. Put the BehaviorPrint™ system on your actual leads.
+        Run Ghost Protocol on your three coldest contacts. Walk into a listing appointment with the
+        Pre-Appointment Intel package. Use the Objection Crusher the next time a seller pushes back
+        on your commission.
+        <br><br>
+        If after 30 days of real use this has not changed the quality of your conversations,
+        email us and you get every dollar back. No explanations required. No "did you try this feature."
+        No cooling-off period. This guarantee exists because the tool earns it.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq_section" id="faq">
+  <div class="wrap_xs">
+    <div class="s_label reveal" style="justify-content:center;">Questions</div>
+    <h2 class="s_h2 reveal" style="text-align:center;max-width:100%;">The Ones Everyone<br><em>Actually Asks.</em></h2>
+
+    <div class="faq_list">
+      <div class="faq_item reveal">
+        <div class="faq_q" onclick="toggleFaq(this)">
+          Do I need to know anything about AI to use this?
+          <span class="faq_icon">+</span>
+        </div>
+        <div class="faq_a">
+          <div class="faq_a_text">Not at all. You set three signals about your lead, fill in a few context fields about your situation, and hit generate. The ConvoIQ Engine handles everything behind the scenes. If you can fill in a contact form, you can use this.</div>
+        </div>
+      </div>
+
+      <div class="faq_item reveal">
+        <div class="faq_q" onclick="toggleFaq(this)">
+          Does it sound like AI? Will my leads know?
+          <span class="faq_icon">+</span>
+        </div>
+        <div class="faq_a">
+          <div class="faq_a_text">The ConvoIQ Engine is specifically built to produce outputs that do not sound like AI generated copy. No filler phrases. No corporate language. Messages calibrated to the lead's own communication style, which means they feel like they were written by a human who actually knows them. The before and after demo on this page is a real example of the difference.</div>
+        </div>
+      </div>
+
+      <div class="faq_item reveal">
+        <div class="faq_q" onclick="toggleFaq(this)">
+          Is this a subscription? Are there ongoing fees?
+          <span class="faq_icon">+</span>
+        </div>
+        <div class="faq_a">
+          <div class="faq_a_text">One payment of $197. That is it. No monthly fee. No per-use charge. No renewal. Every future update to The Elite Opener™ is included at no additional cost, forever. The founder pricing you see today is lower than where this is going once the next module set ships.</div>
+        </div>
+      </div>
+
+      <div class="faq_item reveal">
+        <div class="faq_q" onclick="toggleFaq(this)">
+          What markets does this work for?
+          <span class="faq_icon">+</span>
+        </div>
+        <div class="faq_a">
+          <div class="faq_a_text">The system is built for residential real estate agents in any English-speaking market. US, Canada, the Caribbean, UK, Australia. The conversation principles are universal because buyer and seller psychology does not change by geography. What changes is the commission size on a deal. Bigger market, bigger return.</div>
+        </div>
+      </div>
+
+      <div class="faq_item reveal">
+        <div class="faq_q" onclick="toggleFaq(this)">
+          Can I use this for my whole team?
+          <span class="faq_icon">+</span>
+        </div>
+        <div class="faq_a">
+          <div class="faq_a_text">The standard license covers individual agent use. For teams and brokerages that want access across multiple agents, contact us about the team license. The ROI math on a ten-agent team using this system is fairly difficult to argue with.</div>
+        </div>
+      </div>
+
+      <div class="faq_item reveal">
+        <div class="faq_q" onclick="toggleFaq(this)">
+          How is this different from ChatGPT?
+          <span class="faq_icon">+</span>
+        </div>
+        <div class="faq_a">
+          <div class="faq_a_text">ChatGPT generates output. The ConvoIQ Engine reads your lead first. The BehaviorPrint™ system means every output is calibrated to the specific human on the other end of that conversation, not generated in a vacuum. Beyond that: seven purpose-built modules for the exact situations real estate agents face daily, specific prompting architecture built over months, and outputs that consistently do not sound like they came from an AI tool.</div>
+        </div>
+      </div>
+
+      <div class="faq_item reveal">
+        <div class="faq_q" onclick="toggleFaq(this)">
+          What if it does not work for me?
+          <span class="faq_icon">+</span>
+        </div>
+        <div class="faq_a">
+          <div class="faq_a_text">30-day full refund. No forms. No explanation required. No "have you tried updating your browser." You ask, you get your money back. The guarantee is as unconditional as the tool is effective.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final_section">
+  <div class="reveal">
+    <h2 class="final_h">
+      Every Deal You Lost This Year<br>
+      Was Lost in a <em>Conversation.</em><br>
+      Not in the Market.
+    </h2>
+    <p class="final_sub">
+      The market did not take your commission.
+      The wrong words at the wrong moment did.
+      The Elite Opener™ gives you the right words for every moment.
+      And it runs whether you are at a showing, at lunch, or asleep.
+    </p>
+    <a href="#" class="cta_primary" style="font-size:15px;padding:20px 52px;">
+      Get The Elite Opener™ — $197 →
+    </a>
+    <p style="margin-top:18px;font-size:12px;color:var(--muted);font-weight:300;">
+      One-time payment · Lifetime access · 30-day money back guarantee · No subscriptions
+    </p>
+  </div>
+</section>
+
+<!-- SEO SECTION -->
+<div class="seo_section">
+  <div class="seo_inner">
+    <div class="seo_title">About The Elite Opener™</div>
+    <div class="seo_body">
+      <p>The Elite Opener™ is an AI-powered conversation intelligence system built specifically for real estate agents in 2026. It solves one problem: agents losing deals not in the market, not in the showing, but in the conversation — the moment when the right words ran out and the wrong ones filled the gap. The product runs on the ConvoIQ Engine™, which processes the BehaviorPrint™ (three behavioral signals from the lead) before generating any output. This means every message is calibrated to the specific person on the other end, not generated from a generic template.</p>
+      <p>The system covers seven modules across the entire sales conversation lifecycle: first contact opener, buyer and seller qualification, objection reframing, ghost lead reactivation, anxious seller communication, listing appointment intelligence, and decision-style closing. Each module includes a "Why This Works" psychology explainer and a Session Log feature for building full deal playbooks in one session. The Elite Opener™ was created by Katlego Prince and is available for individual agents at the founder price of $197, with team and brokerage licensing available on request.</p>
+    </div>
+    <div class="seo_kw">
+      real estate conversation AI 2026 | what to say when lead goes cold real estate | ghost lead reactivation real estate agent | real estate objection handling system | listing appointment intelligence AI | seller communication real estate | how to follow up real estate without sounding desperate | ConvoIQ Engine real estate | BehaviorPrint real estate | Elite Opener real estate | Katlego Prince real estate AI | real estate sales system one time payment | AI conversation tool for real estate agents | real estate follow up AI system | what to text a cold real estate lead | real estate close script buyer type | how to reactivate ghost leads real estate | listing appointment script real estate
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer_logo">The Elite Opener<b>™</b></div>
+  <div class="footer_copy">© 2026 Katlego Prince. All rights reserved.</div>
+  <div class="footer_links">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Terms of Use</a>
+    <a href="#">Contact</a>
+  </div>
+</footer>
+
+</div>
+
+<script>
+// ─── SCROLL REVEALS ───
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); observer.unobserve(e.target); }
+  });
+}, { threshold: 0.07 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// ─── FAQ TOGGLE ───
+function toggleFaq(el) {
+  const item = el.closest('.faq_item');
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq_item.open').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+// ─── LIVE DEMO ───
+const DEMO_OUTPUTS = {
+  hot_short_sms: {
+    msg: 'Marcus, something came up on that property I want to flag for you. The school zone situation is actually better than the listing shows. Worth 2 minutes if you have them?',
+    note: 'Hot lead · Short style · SMS · Under 35 words. Curiosity-led, not check-in.'
+  },
+  hot_casual_sms: {
+    msg: 'Marcus hey, caught something on that property you should know about before someone else makes a move on it. Call me when you have 5?',
+    note: 'Hot lead · Casual style · SMS · Creates urgency through insight, not pressure.'
+  },
+  hot_detailed_email: {
+    msg: 'Subject: Something about the Riverside listing worth knowing\n\nMarcus, I was reviewing the listing for 224 Riverside this morning and noticed something that actually works in your favour that the current description undersells. I think it changes the calculation you were doing last week. Would you have 10 minutes Thursday to walk through it?',
+    note: 'Hot lead · Detailed style · Email · Subject line included. More depth for detail-oriented buyers.'
+  },
+  warm_short_sms: {
+    msg: 'Marcus, market shifted in that area this week. Might actually work in your favour. Want the short version?',
+    note: 'Warm lead · Short style · SMS · Leads with new information, not a follow-up.'
+  },
+  warm_casual_sms: {
+    msg: 'Hey Marcus, something changed with the inventory in that area since we last spoke. Thought you'd want to know before the weekend.',
+    note: 'Warm lead · Casual style · SMS · References prior context, creates relevance.'
+  },
+  warm_detailed_email: {
+    msg: 'Subject: Quick update on the market you were watching\n\nMarcus, things shifted a bit in the Riverside corridor this week and I think it actually opens up an option that was not on the table when we last spoke. I want to make sure you have this before you make any decisions. Are you free for a brief call Friday morning?',
+    note: 'Warm lead · Detailed style · Email · Positions agent as an advisor with insight, not a vendor chasing.'
+  },
+  cold_short_sms: {
+    msg: 'Marcus, new listing on your street came up. Figured you'd want to see it before it moves.',
+    note: 'Cold lead · Short style · SMS · Hyper-specific value. No "checking in."'
+  },
+  cold_casual_sms: {
+    msg: 'Marcus, been a minute. Something just came up in the area you were looking at. Honestly thought of you immediately.',
+    note: 'Cold lead · Casual style · SMS · Personal and specific. Sounds like a human, not a funnel.'
+  },
+  cold_detailed_email: {
+    msg: 'Subject: Something just came up in your search area\n\nMarcus, I know it has been a little while since we spoke, and I did not want to reach out without a real reason. Something just came up in the area you were focused on that I think is worth your attention before the rest of the market catches it. No pressure at all — I just thought you should know this exists before it does not.',
+    note: 'Cold lead · Detailed style · Email · Leads with value, not apology. Re-opens without awkwardness.'
+  },
+  ghost_short_sms: {
+    msg: 'Marcus, not going to pretend this is a casual text. One thing changed in your search area. Worth knowing or not?',
+    note: 'Ghost lead · Short style · SMS · Honest, direct, and oddly disarming. Works because it breaks the pattern.'
+  },
+  ghost_casual_sms: {
+    msg: 'Marcus, I know you went quiet and I'm not holding it against you. One thing actually changed that I think would matter to you. Your call entirely.',
+    note: 'Ghost lead · Casual style · SMS · Removes shame from the silence. Gives them an easy re-entry.'
+  },
+  ghost_detailed_email: {
+    msg: 'Subject: A genuine reason to reach out\n\nMarcus, I've been sitting on this because I did not want to be the agent who sends another empty "just wanted to check in." I respect that you went quiet, and I figure you had your reasons. But something just changed in the market you were watching that I think you would actually want to know about. If you are still in the picture, this matters. If you are not, no hard feelings and feel free to ignore this. If you want the update, reply here and I will send it over.',
+    note: 'Ghost lead · Detailed style · Email · Acknowledges the silence without apologising for it. Opens a door.'
+  },
+};
+
+let demoState = { speed: 'hot', style: 'short', platform: 'sms' };
+
+function getDemoKey() {
+  const { speed, style, platform } = demoState;
+  // Map platform for key
+  const p = platform === 'instagram' ? 'sms' : platform;
+  const key = `${speed}_${style}_${p}`;
+  return DEMO_OUTPUTS[key] || DEMO_OUTPUTS['hot_short_sms'];
+}
+
+function updateDemo() {
+  const out = getDemoKey();
+  const msgEl = document.getElementById('demo_msg');
+  const tagEl = document.getElementById('demo_bp_tag');
+  
+  msgEl.style.opacity = '0';
+  setTimeout(() => {
+    msgEl.textContent = out.msg;
+    tagEl.textContent = out.note;
+    msgEl.style.opacity = '1';
+  }, 200);
+}
+
+document.querySelectorAll('.demo_pill').forEach(pill => {
+  pill.addEventListener('click', () => {
+    const group = pill.dataset.group;
+    pill.closest('.demo_pills').querySelectorAll('.demo_pill').forEach(p => p.classList.remove('active'));
+    pill.classList.add('active');
+    demoState[group] = pill.dataset.val;
+    updateDemo();
+  });
+});
+
+// ─── NAV SCROLL EFFECT ───
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('.nav');
+  if (window.scrollY > 60) {
+    nav.style.background = 'rgba(4,5,10,0.98)';
+  } else {
+    nav.style.background = 'rgba(4,5,10,0.94)';
+  }
+});
+</script>
+</body>
+</html>

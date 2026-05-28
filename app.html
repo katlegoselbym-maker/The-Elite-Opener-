@@ -1,0 +1,1811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Elite Opener™ | ConvoIQ Engine™</title>
+<meta name="description" content="Seven modules. Every sales moment. The AI conversation intelligence system for real estate agents that reads your lead before it writes a single word.">
+<meta name="keywords" content="real estate conversation AI, elite opener real estate, what to say real estate leads, objection handling AI real estate, ghost lead reactivation 2026, ConvoIQ Engine, BehaviorPrint real estate">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --void: #04050a;
+  --base: #07080f;
+  --surface: #0c0e17;
+  --raised: #11141e;
+  --card: #181b26;
+  --border: rgba(212,175,95,0.1);
+  --border_hi: rgba(212,175,95,0.28);
+  --gold: #d4af5f;
+  --gold_bright: #e8c97a;
+  --gold_dim: rgba(212,175,95,0.07);
+  --gold_mid: rgba(212,175,95,0.14);
+  --cream: #ede8dc;
+  --muted: #54536a;
+  --white: #f7f2ea;
+  --green: #5dba8a;
+  --red: #c96a5a;
+  --bar_h: 60px;
+  --bp_h: 56px;
+  --top_total: 116px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--void);
+  color: var(--cream);
+  font-family: 'Outfit', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 40% at 50% -10%, rgba(212,175,95,0.05) 0%, transparent 60%),
+    repeating-linear-gradient(0deg, transparent, transparent 100px, rgba(255,255,255,0.006) 100px, rgba(255,255,255,0.006) 101px),
+    repeating-linear-gradient(90deg, transparent, transparent 100px, rgba(255,255,255,0.006) 100px, rgba(255,255,255,0.006) 101px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes pulse_dot {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(93,186,138,0.4); }
+  50% { opacity: 0.7; box-shadow: 0 0 0 5px rgba(93,186,138,0); }
+}
+
+/* TOPBAR */
+.topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  height: var(--bar_h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  background: rgba(4,5,10,0.96);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  font-family: 'Cormorant', serif;
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--white);
+  letter-spacing: 0.04em;
+}
+
+.logo span { color: var(--gold); }
+
+.tb_center {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.status_dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse_dot 2.5s infinite;
+}
+
+.tb_right { display: flex; align-items: center; gap: 10px; }
+
+.session_btn {
+  position: relative;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 5px 14px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Outfit', sans-serif;
+}
+
+.session_btn:hover { border-color: rgba(212,175,95,0.35); color: var(--gold); }
+
+.session_badge {
+  position: absolute;
+  top: -7px; right: -7px;
+  background: var(--gold);
+  color: var(--void);
+  font-size: 9px;
+  font-weight: 700;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.mod_pill {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--gold_dim);
+}
+
+/* BEHAVIORPRINT STRIP */
+.bp_strip {
+  position: fixed;
+  top: var(--bar_h);
+  left: 0; right: 0;
+  z-index: 190;
+  height: var(--bp_h);
+  display: flex;
+  align-items: center;
+  padding: 0 28px;
+  gap: 24px;
+  background: rgba(7,8,15,0.97);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.bp_strip::-webkit-scrollbar { display: none; }
+
+.bp_brand {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+}
+
+.bp_symbol { color: var(--gold); font-size: 13px; }
+
+.bp_name {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  white-space: nowrap;
+}
+
+.bp_sep {
+  width: 1px;
+  height: 24px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+.bp_group {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+}
+
+.bp_group_lbl {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.bp_pills { display: flex; gap: 3px; }
+
+.bp_pill {
+  font-size: 10px;
+  font-weight: 500;
+  padding: 3px 9px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.05);
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+  user-select: none;
+  background: transparent;
+}
+
+.bp_pill:hover { border-color: rgba(212,175,95,0.25); color: var(--cream); }
+
+.bp_pill.active {
+  background: var(--gold_dim);
+  border-color: rgba(212,175,95,0.4);
+  color: var(--gold);
+}
+
+/* LAYOUT */
+.layout {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 264px 1fr;
+  min-height: calc(100vh - var(--top_total));
+  margin-top: var(--top_total);
+}
+
+/* SIDEBAR */
+.sidebar {
+  position: sticky;
+  top: var(--top_total);
+  height: calc(100vh - var(--top_total));
+  overflow-y: auto;
+  border-right: 1px solid var(--border);
+  padding: 18px 10px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.sb_lbl {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 0 6px;
+  margin-bottom: 10px;
+}
+
+.mod_card {
+  padding: 13px 12px;
+  border-radius: 9px;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: 3px;
+  border: 1px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+
+.mod_card::after {
+  content: '';
+  position: absolute;
+  left: 0; top: 20%; bottom: 20%;
+  width: 2px;
+  background: var(--gold);
+  border-radius: 2px;
+  opacity: 0;
+  transform: scaleY(0);
+  transition: all 0.22s cubic-bezier(0.16,1,0.3,1);
+}
+
+.mod_card:hover { background: rgba(255,255,255,0.02); }
+.mod_card.active {
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+.mod_card.active::after {
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.mc_top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 3px;
+}
+
+.mc_num {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+}
+
+.mod_card.active .mc_num { color: var(--gold); }
+
+.mc_icon {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1;
+}
+
+.mod_card.active .mc_icon { color: var(--gold); }
+
+.mc_name {
+  font-family: 'Cormorant', serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--cream);
+  line-height: 1.1;
+}
+
+.mod_card.active .mc_name { color: var(--white); }
+
+.mc_when {
+  font-size: 10px;
+  color: var(--muted);
+  line-height: 1.4;
+  padding-left: 0;
+}
+
+.mod_card.active .mc_when { color: rgba(237,232,220,0.4); }
+
+/* MAIN */
+.main_col {
+  padding: 40px 52px 80px;
+  max-width: 760px;
+}
+
+.mod_head { margin-bottom: 32px; }
+
+.mod_eyebrow {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.mod_title {
+  font-family: 'Cormorant', serif;
+  font-size: clamp(30px, 4vw, 46px);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.0;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.mod_title em { font-style: italic; color: var(--gold); }
+
+.mod_tagline {
+  font-family: 'Cormorant', serif;
+  font-size: 17px;
+  font-style: italic;
+  font-weight: 300;
+  color: rgba(237,232,220,0.45);
+  line-height: 1.4;
+}
+
+.mod_use_tag {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 7px;
+  background: var(--gold_dim);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 7px 13px;
+  font-size: 11px;
+  color: rgba(237,232,220,0.5);
+  margin-top: 14px;
+  line-height: 1.4;
+}
+
+.mod_use_tag strong { color: var(--gold); font-weight: 600; }
+
+/* FORM */
+.form_wrap { margin-bottom: 24px; }
+
+.field_row { margin-bottom: 18px; }
+
+.f_label {
+  display: block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 7px;
+}
+
+.f_input, .f_select, .f_ta {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  color: var(--cream);
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 300;
+  padding: 10px 14px;
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+.f_input:focus, .f_select:focus, .f_ta:focus {
+  border-color: rgba(212,175,95,0.45);
+}
+
+.f_ta {
+  resize: vertical;
+  min-height: 80px;
+  line-height: 1.6;
+  appearance: none;
+}
+
+.f_select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a596a' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+  cursor: pointer;
+}
+
+.f_select option { background: #0c0e17; }
+
+/* GEN BUTTON */
+.gen_row { margin: 28px 0; }
+
+.gen_btn {
+  background: var(--gold);
+  color: var(--void);
+  font-family: 'Outfit', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 14px 32px;
+  border-radius: 7px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.22s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.gen_btn::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.12) 50%, transparent 100%);
+  transform: translateX(-100%);
+  transition: transform 0.45s;
+}
+
+.gen_btn:hover {
+  background: var(--gold_bright);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 28px rgba(212,175,95,0.22);
+}
+
+.gen_btn:hover::before { transform: translateX(100%); }
+
+.gen_btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.gen_btn.loading .g_text { opacity: 0; }
+
+.g_spinner {
+  position: absolute;
+  width: 16px; height: 16px;
+  border: 2px solid rgba(4,5,10,0.25);
+  border-top-color: var(--void);
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.gen_btn.loading .g_spinner { opacity: 1; }
+
+/* OUTPUT */
+.output_area { display: none; margin-top: 4px; }
+.output_area.visible { display: block; animation: fadeUp 0.4s cubic-bezier(0.16,1,0.3,1) both; }
+
+.out_engine_tag {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 18px;
+}
+
+.out_engine_tag::before { content: ''; width: 24px; height: 1px; background: var(--gold); }
+
+.msg_stack { display: flex; flex-direction: column; gap: 10px; }
+
+.msg_bubble {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px 18px;
+  transition: border-color 0.18s;
+}
+
+.msg_bubble:hover { border-color: rgba(212,175,95,0.2); }
+
+.mb_head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 9px;
+}
+
+.mb_tag {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.copy_btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 4px 10px;
+  font-size: 9px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s;
+  letter-spacing: 0.06em;
+  font-family: 'Outfit', sans-serif;
+}
+
+.copy_btn:hover { border-color: rgba(212,175,95,0.4); color: var(--gold); }
+.copy_btn.copied { border-color: var(--green); color: var(--green); }
+
+.msg_text {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1.65;
+}
+
+.intel_card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px;
+  margin-bottom: 10px;
+}
+
+.intel_title {
+  font-family: 'Cormorant', serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 14px;
+}
+
+.intel_grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.i_lbl {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.i_val {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--cream);
+  line-height: 1.5;
+}
+
+.i_val.red { color: var(--red); }
+
+.reframe_card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: 10px;
+  padding: 18px;
+  margin-bottom: 10px;
+}
+
+.rf_obj {
+  font-size: 11px;
+  font-style: italic;
+  color: rgba(237,232,220,0.35);
+  margin-bottom: 10px;
+}
+
+.ghost_tl { display: flex; flex-direction: column; }
+
+.ghost_row {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 14px;
+  padding-bottom: 18px;
+}
+
+.ghost_left { display: flex; flex-direction: column; align-items: center; }
+
+.ghost_dot {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 2px solid var(--void);
+  box-shadow: 0 0 0 2px var(--gold_mid);
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.ghost_line { width: 1px; flex: 1; background: var(--border); margin-top: 4px; }
+.ghost_row:last-child .ghost_line { display: none; }
+
+.ghost_timing {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 7px;
+}
+
+.ghost_msg {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 13px 15px;
+}
+
+.why_works {
+  background: var(--gold_dim);
+  border: 1px solid rgba(212,175,95,0.1);
+  border-radius: 7px;
+  overflow: hidden;
+  margin-top: 14px;
+  cursor: pointer;
+}
+
+.ww_head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 14px;
+}
+
+.ww_lbl {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.ww_arrow {
+  font-size: 11px;
+  color: var(--gold);
+  transition: transform 0.2s;
+}
+
+.why_works.open .ww_arrow { transform: rotate(180deg); }
+
+.ww_body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.why_works.open .ww_body { max-height: 200px; }
+
+.ww_body_inner {
+  padding: 0 14px 12px;
+  font-size: 11px;
+  color: rgba(237,232,220,0.55);
+  line-height: 1.6;
+}
+
+.out_footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+
+.copy_all_btn {
+  background: var(--gold);
+  color: var(--void);
+  border: none;
+  border-radius: 6px;
+  padding: 8px 18px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: 0.04em;
+}
+
+.copy_all_btn:hover { background: var(--gold_bright); }
+
+.save_btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: 'Outfit', sans-serif;
+}
+
+.save_btn:hover { border-color: rgba(212,175,95,0.4); color: var(--gold); }
+.save_btn.saved { border-color: var(--green); color: var(--green); }
+
+.clr_btn {
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  font-size: 10px;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  transition: color 0.18s;
+}
+
+.clr_btn:hover { color: var(--red); }
+
+/* SESSION OVERLAY */
+.s_overlay {
+  position: fixed; inset: 0;
+  background: rgba(4,5,10,0.75);
+  z-index: 300;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s;
+}
+
+.s_overlay.open { opacity: 1; pointer-events: all; }
+
+.s_drawer {
+  position: fixed;
+  top: 0; right: 0; bottom: 0;
+  width: 460px;
+  max-width: 95vw;
+  background: var(--base);
+  border-left: 1px solid var(--border);
+  z-index: 301;
+  transform: translateX(100%);
+  transition: transform 0.32s cubic-bezier(0.16,1,0.3,1);
+  display: flex;
+  flex-direction: column;
+}
+
+.s_overlay.open .s_drawer { transform: translateX(0); }
+
+.s_head {
+  padding: 22px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.s_title {
+  font-family: 'Cormorant', serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.s_close {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 5px 12px;
+  font-size: 11px;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  transition: all 0.18s;
+}
+
+.s_close:hover { border-color: var(--gold); color: var(--gold); }
+
+.s_body { flex: 1; overflow-y: auto; padding: 18px 22px; }
+
+.s_empty {
+  text-align: center;
+  padding: 48px 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.s_item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 14px;
+  margin-bottom: 10px;
+}
+
+.s_item_top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.s_item_mod {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.s_item_time { font-size: 10px; color: var(--muted); }
+
+.s_preview {
+  font-size: 11px;
+  color: rgba(237,232,220,0.5);
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.s_foot {
+  padding: 14px 22px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 8px;
+}
+
+.s_copy_all {
+  flex: 1;
+  background: var(--gold);
+  color: var(--void);
+  border: none;
+  border-radius: 6px;
+  padding: 9px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  transition: all 0.18s;
+}
+
+.s_copy_all:hover { background: var(--gold_bright); }
+
+.s_clr {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 9px 14px;
+  font-size: 11px;
+  color: var(--muted);
+  cursor: pointer;
+  font-family: 'Outfit', sans-serif;
+  transition: all 0.18s;
+}
+
+.s_clr:hover { border-color: var(--red); color: var(--red); }
+
+/* LOADING STATE */
+.gen_loading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 0;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.gen_loading_dot {
+  width: 16px; height: 16px;
+  border: 2px solid var(--border);
+  border-top-color: var(--gold);
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+  flex-shrink: 0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 920px) {
+  .layout { grid-template-columns: 1fr; }
+
+  .sidebar {
+    position: static;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 10px 8px;
+  }
+
+  #sidebar_modules {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+    overflow-x: auto;
+  }
+
+  .mc_when { display: none; }
+  .mc_name { font-size: 10px; }
+  .mod_card { padding: 8px 6px; text-align: center; }
+  .mc_top { justify-content: center; }
+  .mc_num { display: none; }
+
+  .main_col { padding: 24px 20px 60px; }
+  .tb_center { display: none; }
+}
+
+@media (max-width: 560px) {
+  .intel_grid { grid-template-columns: 1fr; }
+  .s_drawer { width: 100%; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="logo">The Elite Opener<span>™</span></div>
+  <div class="tb_center">
+    <div class="status_dot"></div>
+    ConvoIQ Engine™ Active
+  </div>
+  <div class="tb_right">
+    <button class="session_btn" onclick="toggleSession()">
+      Session Log
+      <div class="session_badge" id="s_badge">0</div>
+    </button>
+    <div class="mod_pill" id="mod_pill">01 of 07</div>
+  </div>
+</div>
+
+<!-- BEHAVIORPRINT STRIP -->
+<div class="bp_strip">
+  <div class="bp_brand">
+    <div class="bp_symbol">◈</div>
+    <div class="bp_name">BehaviorPrint™</div>
+  </div>
+  <div class="bp_sep"></div>
+  <div class="bp_group">
+    <div class="bp_group_lbl">Response</div>
+    <div class="bp_pills">
+      <div class="bp_pill active" data-g="speed" data-v="immediate">Immediate</div>
+      <div class="bp_pill" data-g="speed" data-v="same_day">Same Day</div>
+      <div class="bp_pill" data-g="speed" data-v="few_days">Few Days</div>
+      <div class="bp_pill" data-g="speed" data-v="week_plus">Week+</div>
+      <div class="bp_pill" data-g="speed" data-v="silent">Silent</div>
+    </div>
+  </div>
+  <div class="bp_sep"></div>
+  <div class="bp_group">
+    <div class="bp_group_lbl">Their Style</div>
+    <div class="bp_pills">
+      <div class="bp_pill active" data-g="style" data-v="short">Short</div>
+      <div class="bp_pill" data-g="style" data-v="casual">Casual</div>
+      <div class="bp_pill" data-g="style" data-v="detailed">Detailed</div>
+      <div class="bp_pill" data-g="style" data-v="emoji">Emoji</div>
+    </div>
+  </div>
+  <div class="bp_sep"></div>
+  <div class="bp_group">
+    <div class="bp_group_lbl">Platform</div>
+    <div class="bp_pills">
+      <div class="bp_pill active" data-g="platform" data-v="sms">SMS</div>
+      <div class="bp_pill" data-g="platform" data-v="whatsapp">WhatsApp</div>
+      <div class="bp_pill" data-g="platform" data-v="email">Email</div>
+      <div class="bp_pill" data-g="platform" data-v="instagram">Instagram</div>
+      <div class="bp_pill" data-g="platform" data-v="linkedin">LinkedIn</div>
+    </div>
+  </div>
+</div>
+
+<!-- LAYOUT -->
+<div class="layout">
+  <div class="sidebar">
+    <div class="sb_lbl">7 Modules</div>
+    <div id="sidebar_modules"></div>
+  </div>
+  <div class="main_col">
+    <div class="mod_head" id="mod_head"></div>
+    <div class="form_wrap" id="mod_form"></div>
+    <div class="gen_row">
+      <button class="gen_btn" id="gen_btn" onclick="generate()">
+        <div class="g_spinner"></div>
+        <span class="g_text">Generate with ConvoIQ Engine™</span>
+      </button>
+    </div>
+    <div class="output_area" id="out"></div>
+  </div>
+</div>
+
+<!-- SESSION -->
+<div class="s_overlay" id="s_overlay" onclick="closeSessionOut(event)">
+  <div class="s_drawer">
+    <div class="s_head">
+      <div class="s_title">Session Log</div>
+      <button class="s_close" onclick="toggleSession()">Close</button>
+    </div>
+    <div class="s_body" id="s_body">
+      <div class="s_empty">Nothing saved yet.<br><br>Generate an output and hit "Save to Session" to build your lead playbook.</div>
+    </div>
+    <div class="s_foot">
+      <button class="s_copy_all" onclick="copySession()">Copy All to Clipboard</button>
+      <button class="s_clr" onclick="clearSession()">Clear</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ==========================================
+// DATA
+// ==========================================
+const MODS = [
+  {
+    id: 'opener', num: '01', icon: '◎',
+    name: 'The Opener',
+    tagline: 'First contact that gets a reply, not a delete',
+    useWhen: 'New lead. First message. You have their number but not their attention yet.',
+    fields: [
+      { id: 'platform', label: 'Platform', type: 'select', opts: ['Text / SMS','WhatsApp','Email','Instagram DM','LinkedIn DM','Cold Voicemail Follow-up'] },
+      { id: 'lead_type', label: 'Lead Type', type: 'select', opts: ['Buyer Inquiry','Seller Lead','Referral','Open House Guest','Expired Listing Owner','FSBO Owner','Portal Lead','Social Media Inbound'] },
+      { id: 'context', label: 'What do you know about them?', type: 'textarea', ph: 'e.g. Clicked on 3BR homes in Midtown at 11pm, submitted a form, no phone call yet...' }
+    ]
+  },
+  {
+    id: 'qualifier', num: '02', icon: '◈',
+    name: 'The Qualifier',
+    tagline: 'Know exactly who you are dealing with before you spend an hour on them',
+    useWhen: 'They responded. Now figure out how serious they are without playing 20 questions.',
+    fields: [
+      { id: 'buyer_type', label: 'Buyer or Seller?', type: 'select', opts: ['Buyer','Seller','Both or Investor'] },
+      { id: 'stage', label: 'Where They Are Right Now', type: 'select', opts: ['Just started browsing','Actively looking','Ready to move now','Testing the market','Under pressure to decide'] },
+      { id: 'known', label: 'What have they told you so far?', type: 'textarea', ph: 'Budget, location preference, timeline pressure, anything they shared already...' }
+    ]
+  },
+  {
+    id: 'reframe', num: '03', icon: '◆',
+    name: 'Objection Crusher',
+    tagline: 'Turn the no into a next step without sounding defensive',
+    useWhen: 'They pushed back. The deal is not dead yet but it will be if you say the wrong thing.',
+    fields: [
+      { id: 'objection', label: 'Their Objection', type: 'select', opts: ['Your commission is too high','We are going to wait and see','We are already working with someone else','The market is too uncertain right now','We want to try selling ourselves first','We need to think about it','The price is not right','Custom objection'] },
+      { id: 'custom_obj', label: 'Their exact words if custom', type: 'text', ph: 'Paste what they said...' },
+      { id: 'rel_depth', label: 'Your Relationship Depth', type: 'select', opts: ['First conversation','Two to three touchpoints','Known them a while','Previously closed a deal together'] }
+    ]
+  },
+  {
+    id: 'ghost', num: '04', icon: '◇',
+    name: 'Ghost Protocol',
+    tagline: 'Resurrect conversations that have gone completely silent',
+    useWhen: 'They stopped replying. You need them back without becoming the agent who sends "just checking in" every five days.',
+    fields: [
+      { id: 'silence', label: 'How Long Has the Silence Been?', type: 'select', opts: ['3 to 5 days','1 to 2 weeks','3 to 4 weeks','1 to 2 months','3 months or more'] },
+      { id: 'last_stage', label: 'Where Did the Conversation Stop?', type: 'select', opts: ['After showing a property','After sending listings','After a great first call','After submitting an offer','After my last follow up','Before we ever had a real conversation'] },
+      { id: 'situation', label: 'Their Situation', type: 'textarea', ph: 'What were they looking for? Timeline, budget, any personal details they shared...' }
+    ]
+  },
+  {
+    id: 'seller', num: '05', icon: '●',
+    name: 'Seller Whisperer',
+    tagline: 'Handle an anxious seller before they pull the listing',
+    useWhen: 'Your seller is panicking, pushing for a price cut, or threatening to list elsewhere. One conversation decides this.',
+    fields: [
+      { id: 'seller_msg', label: 'What Did They Say or Do?', type: 'textarea', ph: 'e.g. "I want to drop the price by $30K immediately. Zero offers in three weeks."' },
+      { id: 'listing_age', label: 'Listing Active For', type: 'select', opts: ['Less than 2 weeks','2 to 4 weeks','1 to 2 months','2 to 3 months','Over 3 months'] },
+      { id: 'real_state', label: 'What Is Actually Going On?', type: 'textarea', ph: 'Market conditions, showing feedback, price position, your honest read on why it has not sold...' }
+    ]
+  },
+  {
+    id: 'appointment', num: '06', icon: '▲',
+    name: 'Pre-Appointment Intel',
+    tagline: 'Walk in knowing what they are afraid of before they say a word',
+    useWhen: 'You have a listing appointment. You want to own the room from the first 30 seconds instead of earning the right to speak.',
+    fields: [
+      { id: 's_name', label: 'Seller Name', type: 'text', ph: 'e.g. The Johnson Family' },
+      { id: 'why_sell', label: 'Why Are They Selling?', type: 'select', opts: ['Upgrading to a bigger home','Downsizing','Relocating for work','Divorce or separation','Financial pressure','Estate or inherited property','Investment exit','Just testing the market'] },
+      { id: 'timeline', label: 'Their Timeline', type: 'select', opts: ['ASAP','1 to 3 months','3 to 6 months','Over 6 months','No clear timeline yet'] },
+      { id: 'exp_obj', label: 'Likely Objection at the Appointment', type: 'select', opts: ['Your commission is too high','Another agent offered a higher list price','We want to think about it first','We are interviewing multiple agents','We want to try FSBO first'] },
+      { id: 'agent_name', label: 'Your Name or Team Name', type: 'text', ph: 'Your name...' }
+    ]
+  },
+  {
+    id: 'close', num: '07', icon: '★',
+    name: 'The Close',
+    tagline: 'Get the yes without pressure tactics built in 1987',
+    useWhen: 'They love the property but something is stalling. The moment has arrived and you need the exact right words.',
+    fields: [
+      { id: 'buyer_type', label: 'Buyer Type', type: 'select', opts: ['First-time buyer','Move-up buyer','Investor','Downsizer','Relocating buyer','Luxury buyer'] },
+      { id: 'keeps_returning', label: 'What Do They Keep Coming Back To?', type: 'textarea', ph: 'Features, location details, emotional hooks that keep coming up in conversation...' },
+      { id: 'hesitation', label: 'Why Are They Hesitating?', type: 'select', opts: ['Worried about overpaying','Fear of commitment','Waiting to see more options','Spouse or partner needs convincing','Worried about market direction','Financial concern','Not sure yet'] }
+    ]
+  }
+];
+
+// ==========================================
+// STATE
+// ==========================================
+let activeId = 'opener';
+let lastOut = null;
+let session = [];
+const bp = { speed: 'immediate', style: 'short', platform: 'sms' };
+
+// ==========================================
+// INIT
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+  renderSidebar();
+  setModule('opener');
+  initBP();
+});
+
+// ==========================================
+// SIDEBAR
+// ==========================================
+function renderSidebar() {
+  document.getElementById('sidebar_modules').innerHTML = MODS.map(m => `
+    <div class="mod_card ${m.id === activeId ? 'active' : ''}" id="mc_${m.id}" onclick="setModule('${m.id}')">
+      <div class="mc_top">
+        <span class="mc_num">${m.num}</span>
+        <span class="mc_icon">${m.icon}</span>
+      </div>
+      <div class="mc_name">${m.name}</div>
+      <div class="mc_when">${m.useWhen}</div>
+    </div>
+  `).join('');
+}
+
+// ==========================================
+// SET MODULE
+// ==========================================
+function setModule(id) {
+  activeId = id;
+  lastOut = null;
+
+  document.querySelectorAll('.mod_card').forEach(c => c.classList.remove('active'));
+  const card = document.getElementById(`mc_${id}`);
+  if (card) card.classList.add('active');
+
+  const m = MODS.find(x => x.id === id);
+  document.getElementById('mod_pill').textContent = `${m.num} of 07`;
+
+  const head = document.getElementById('mod_head');
+  head.innerHTML = `
+    <div class="mod_eyebrow">${m.icon} Module ${m.num} of 07</div>
+    <div class="mod_title">${m.name}</div>
+    <div class="mod_tagline">${m.tagline}</div>
+    <div class="mod_use_tag"><strong>Use when:</strong> ${m.useWhen}</div>
+  `;
+  head.style.animation = 'none';
+  requestAnimationFrame(() => head.style.animation = 'fadeUp 0.35s cubic-bezier(0.16,1,0.3,1) both');
+
+  const form = document.getElementById('mod_form');
+  form.innerHTML = m.fields.map(f => `
+    <div class="field_row">
+      <label class="f_label">${f.label}</label>
+      ${f.type === 'select'
+        ? `<select class="f_select" id="f_${f.id}">
+             <option value="">Select...</option>
+             ${f.opts.map(o => `<option value="${o}">${o}</option>`).join('')}
+           </select>`
+        : f.type === 'textarea'
+        ? `<textarea class="f_ta" id="f_${f.id}" placeholder="${f.ph || ''}"></textarea>`
+        : `<input type="text" class="f_input" id="f_${f.id}" placeholder="${f.ph || ''}">`
+      }
+    </div>
+  `).join('');
+  form.style.animation = 'none';
+  requestAnimationFrame(() => form.style.animation = 'fadeUp 0.35s 0.05s cubic-bezier(0.16,1,0.3,1) both');
+
+  const out = document.getElementById('out');
+  out.classList.remove('visible');
+  out.innerHTML = '';
+}
+
+// ==========================================
+// BEHAVIORPRINT
+// ==========================================
+function initBP() {
+  document.querySelectorAll('.bp_pill').forEach(p => {
+    p.addEventListener('click', () => {
+      p.closest('.bp_pills').querySelectorAll('.bp_pill').forEach(x => x.classList.remove('active'));
+      p.classList.add('active');
+      bp[p.dataset.g] = p.dataset.v;
+    });
+  });
+}
+
+// ==========================================
+// GENERATE
+// ==========================================
+async function generate() {
+  const m = MODS.find(x => x.id === activeId);
+  const btn = document.getElementById('gen_btn');
+  const out = document.getElementById('out');
+
+  const vals = {};
+  m.fields.forEach(f => {
+    const el = document.getElementById(`f_${f.id}`);
+    if (el) vals[f.id] = el.value.trim();
+  });
+
+  btn.classList.add('loading');
+  btn.disabled = true;
+  out.classList.add('visible');
+  out.innerHTML = `<div class="gen_loading"><div class="gen_loading_dot"></div>BehaviorPrint™ read. ConvoIQ Engine generating...</div>`;
+
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: buildSystem(m, bp),
+        messages: [{ role: 'user', content: buildPrompt(m.id, vals) }]
+      })
+    });
+
+    const data = await res.json();
+    const raw = data.content[0].text.trim().replace(/```json|```/g, '').trim();
+    const result = JSON.parse(raw);
+    lastOut = result;
+    renderOut(m.id, result, vals);
+
+  } catch(e) {
+    console.error(e);
+    out.innerHTML = `<div style="color:var(--red);font-size:12px;padding:16px 0;">Something went wrong. Check your inputs and try again.</div>`;
+  }
+
+  btn.classList.remove('loading');
+  btn.disabled = false;
+}
+
+// ==========================================
+// SYSTEM PROMPTS
+// ==========================================
+function buildSystem(m, bp) {
+  const speedNote = {
+    immediate: 'replied within minutes — highly engaged.',
+    same_day: 'replied same day — good engagement.',
+    few_days: 'took a few days — moderate interest.',
+    week_plus: 'took a week or more — cooling, do not push.',
+    silent: 'has not replied at all — cold, use curiosity not pressure.'
+  }[bp.speed] || bp.speed;
+
+  const styleNote = {
+    short: 'Uses short punchy messages. Mirror it: keep all outputs under 35 words unless structure demands more.',
+    casual: 'Casual and conversational. Match the energy and warmth.',
+    detailed: 'Sends long detailed messages. They appreciate depth and context.',
+    emoji: 'Uses emojis and casual language. Warm tone, feels human.'
+  }[bp.style] || bp.style;
+
+  const platformNote = {
+    sms: 'SMS. Short, human, never sounds like a template.',
+    whatsapp: 'WhatsApp. Slightly warmer than SMS, still mobile-first.',
+    email: 'Email. More structure allowed. Include subject line where relevant.',
+    instagram: 'Instagram DM. One to two sentences max. Sounds like a real person.',
+    linkedin: 'LinkedIn. Professional but personable, not corporate.'
+  }[bp.platform] || bp.platform;
+
+  const systems = {
+    opener: `You are the ConvoIQ Engine™, a conversation intelligence system for elite real estate agents. You write first contact messages that cut through the noise because they do not sound like anything else in that agent's inbox.
+
+BEHAVIORPRINT™ PROFILE:
+This lead ${speedNote}
+Their messaging style: ${styleNote}
+Platform: ${platformNote}
+
+ABSOLUTE RULES:
+Never use dashes anywhere in any output.
+Never sound AI generated.
+Never start with: "I hope", "Just checking in", "Following up", "I wanted to reach out".
+Every message must do exactly one thing: spark genuine curiosity, deliver specific value, or surface a real insight.
+No generic lines that any agent could send to any lead.
+Output valid JSON only. No preamble, no markdown, no code fences.
+
+Output:
+{
+  "variant_1": "straightforward first contact message",
+  "variant_2": "curiosity-led or value-led message",
+  "variant_3": "boldest most unexpected approach",
+  "pro_tip": "one sentence on which variant fits this specific situation",
+  "why_it_works": "two sentences on the psychology behind why these work for this lead profile"
+}`,
+
+    qualifier: `You are the ConvoIQ Engine™. You write qualification sequences that feel like a natural conversation, not a questionnaire. The goal is to understand motivation, urgency, and buying power without making the lead feel interrogated.
+
+BEHAVIORPRINT™ PROFILE:
+This lead ${speedNote}
+Their messaging style: ${styleNote}
+Platform: ${platformNote}
+
+ABSOLUTE RULES:
+Never use dashes anywhere.
+Never sound AI generated.
+Output valid JSON only.
+
+Output:
+{
+  "archetype_detected": "the buyer or seller archetype based on inputs",
+  "key_insight": "one sharp observation most agents would miss about this person",
+  "question_sequence": ["question 1","question 2","question 3","question 4","question 5"],
+  "sequencing_note": "how to move through these questions naturally without it feeling like an interrogation",
+  "why_it_works": "two sentences on the psychology behind this qualification approach"
+}`,
+
+    reframe: `You are the ConvoIQ Engine™. You turn real estate objections into forward momentum without sounding defensive, salesy, or scripted.
+
+BEHAVIORPRINT™ PROFILE:
+This lead ${speedNote}
+Their messaging style: ${styleNote}
+
+ABSOLUTE RULES:
+Never use dashes anywhere.
+Never sound AI generated.
+Never validate the objection with "That is a great point" or similar filler.
+Output valid JSON only.
+
+Output:
+{
+  "reframe_response": "the exact words to say, calibrated to relationship depth",
+  "real_fear": "what they are actually afraid of underneath the surface objection",
+  "follow_up_question": "the one question to ask right after the reframe to keep them talking",
+  "what_not_to_say": "the reflexive phrase most agents say here that kills momentum",
+  "delivery_note": "how to say this for maximum impact",
+  "why_it_works": "two sentences on the psychological shift this reframe creates"
+}`,
+
+    ghost: `You are the ConvoIQ Engine™. You write ghost lead reactivation sequences calibrated to exactly how long the silence has been and what emotional state the lead is likely in.
+
+BEHAVIORPRINT™ PROFILE:
+This lead ${speedNote}
+Their messaging style: ${styleNote}
+Platform: ${platformNote}
+
+ABSOLUTE RULES:
+Never use dashes anywhere.
+Never sound AI generated.
+Never say "just checking in" or "following up".
+Output valid JSON only.
+
+Output:
+{
+  "psychology_read": "sharp read on why this lead likely went quiet and what emotional state they are in right now",
+  "message_1": { "timing": "specific timing instruction from today", "message": "first reactivation message" },
+  "message_2": { "timing": "specific timing if no reply", "message": "second message" },
+  "message_3": { "timing": "final send if still no reply", "message": "last message, most direct and decisive" },
+  "why_it_works": "two sentences on why this timed sequence works on cold leads"
+}`,
+
+    seller: `You are the ConvoIQ Engine™. You help agents handle anxious sellers in a way that preserves trust, keeps the listing, and actually addresses what the seller is afraid of.
+
+BEHAVIORPRINT™ PROFILE:
+Communication style to match: ${styleNote}
+
+ABSOLUTE RULES:
+Never use dashes anywhere.
+Never sound AI generated.
+Never start with "I understand how you feel" or similar filler empathy.
+Output valid JSON only.
+
+Output:
+{
+  "response_message": "what to say to the seller right now",
+  "what_not_to_say": "the phrase most agents reflexively say here that destroys trust",
+  "next_24hr_action": "one specific tangible thing to do in the next 24 hours that demonstrates value",
+  "seller_psychology": "what emotional state they are actually in and what they need from you to feel secure",
+  "real_conversation": "the underlying thing this seller needs addressed before they will calm down",
+  "why_it_works": "two sentences on why this approach keeps both the listing and the trust"
+}`,
+
+    appointment: `You are the ConvoIQ Engine™. You build listing appointment intelligence packages that help real estate agents walk into a room already knowing what the seller is afraid of, what drives their decision, and how to ask for the listing without pressure.
+
+ABSOLUTE RULES:
+Never use dashes anywhere.
+Never sound AI generated.
+Output valid JSON only.
+
+Output:
+{
+  "dominant_motivation": "their primary driving force based on all inputs",
+  "hidden_fear": "what they have not said but are quietly afraid of before this appointment",
+  "decision_style": "how this person makes major decisions based on their situation and personality signals",
+  "opening_statement": "exactly how to open the appointment in the first 30 seconds to establish authority",
+  "commission_defense": "how to handle the commission objection for this specific seller's psychology",
+  "ask_for_listing": "how to close the appointment and ask for the listing without pressure",
+  "the_one_question": "the single question to ask during the appointment that tells you whether you have this listing",
+  "why_it_works": "two sentences on the psychological architecture behind this appointment approach"
+}`,
+
+    close: `You are the ConvoIQ Engine™. You write closing scripts built around buyer psychology and decision-making style, not generic pressure tactics from sales books.
+
+BEHAVIORPRINT™ PROFILE:
+This buyer ${speedNote}
+Their messaging style: ${styleNote}
+
+ABSOLUTE RULES:
+Never use dashes anywhere.
+Never sound AI generated.
+Never use cliche closing lines.
+Output valid JSON only.
+
+Output:
+{
+  "buyer_type_read": "sharp read on this buyer type and what actually moves them toward yes",
+  "primary_close": "main closing approach calibrated to this buyer type and hesitation reason",
+  "alternative_close": "softer alternative if they hesitate after the primary",
+  "the_one_question": "single question to ask if they are still undecided after both closes",
+  "what_not_to_say": "the pressure move most agents use here that makes this buyer pull back",
+  "why_it_works": "two sentences on the behavioral psychology behind this closing approach"
+}`
+  };
+
+  return systems[m.id] || 'Output valid JSON only.';
+}
+
+// ==========================================
+// USER PROMPTS
+// ==========================================
+function buildPrompt(id, v) {
+  const prompts = {
+    opener: `Platform: ${v.platform || 'Not specified'}
+Lead Type: ${v.lead_type || 'Not specified'}
+What I know: ${v.context || 'Very little yet'}`,
+
+    qualifier: `Buyer or Seller: ${v.buyer_type || 'Not specified'}
+Journey Stage: ${v.stage || 'Not specified'}
+What they have told me: ${v.known || 'Not much yet'}`,
+
+    reframe: `Objection: ${v.objection === 'Custom objection' ? (v.custom_obj || 'Not specified') : (v.objection || 'Not specified')}
+Relationship depth: ${v.rel_depth || 'Not specified'}`,
+
+    ghost: `Silence duration: ${v.silence || 'Not specified'}
+Where conversation stopped: ${v.last_stage || 'Not specified'}
+Their situation: ${v.situation || 'Not provided'}`,
+
+    seller: `What they said or did: ${v.seller_msg || 'Not specified'}
+Listing age: ${v.listing_age || 'Not specified'}
+What is actually happening: ${v.real_state || 'Not provided'}`,
+
+    appointment: `Seller: ${v.s_name || 'Unknown'}
+Why selling: ${v.why_sell || 'Not specified'}
+Timeline: ${v.timeline || 'Not specified'}
+Expected objection: ${v.exp_obj || 'Not specified'}
+Agent name: ${v.agent_name || 'The Agent'}`,
+
+    close: `Buyer type: ${v.buyer_type || 'Not specified'}
+What they keep coming back to: ${v.keeps_returning || 'Not specified'}
+Why hesitating: ${v.hesitation || 'Not specified'}`
+  };
+
+  return (prompts[id] || 'Generate the output.') + '\n\nGenerate the output now.';
+}
+
+// ==========================================
+// RENDER OUTPUT
+// ==========================================
+function renderOut(id, r, vals) {
+  const out = document.getElementById('out');
+  out.classList.add('visible');
+
+  let h = `<div class="out_engine_tag">ConvoIQ Engine™ Output</div>`;
+
+  if (id === 'opener') {
+    h += `<div class="msg_stack">`;
+    [['variant_1','Opener A'],['variant_2','Opener B'],['variant_3','Opener C — Most Bold']].forEach(([key, label]) => {
+      if (!r[key]) return;
+      h += bubble(label, r[key]);
+    });
+    h += `</div>`;
+    if (r.pro_tip) h += intelSingle('Pro Tip', r.pro_tip);
+    if (r.why_it_works) h += whyWorks(r.why_it_works);
+  }
+
+  else if (id === 'qualifier') {
+    h += `<div class="intel_card">
+      <div class="intel_title">Prospect Read</div>
+      <div class="intel_grid">
+        <div><div class="i_lbl">Archetype Detected</div><div class="i_val">${esc(r.archetype_detected)}</div></div>
+        <div><div class="i_lbl">Key Insight</div><div class="i_val">${esc(r.key_insight)}</div></div>
+      </div>
+    </div>`;
+    h += `<div class="msg_stack">`;
+    if (r.question_sequence) r.question_sequence.forEach((q,i) => {
+      h += bubble(`Question ${i+1} of 5`, q);
+    });
+    h += `</div>`;
+    if (r.sequencing_note) h += intelSingle('How to Sequence These', r.sequencing_note);
+    if (r.why_it_works) h += whyWorks(r.why_it_works);
+  }
+
+  else if (id === 'reframe') {
+    const objText = vals.objection === 'Custom objection' ? vals.custom_obj : vals.objection;
+    h += `<div class="reframe_card">
+      <div class="rf_obj">Their objection: "${esc(objText)}"</div>
+      <div class="msg_text">${esc(r.reframe_response)}</div>
+    </div>
+    <div style="margin-bottom:12px;">
+      <button class="copy_btn" onclick="docp('${escA(r.reframe_response)}',this)">Copy Reframe</button>
+    </div>`;
+
+    const grid_items = [
+      { l: 'Real Fear Behind This', v: r.real_fear },
+      { l: 'Follow-Up Question', v: r.follow_up_question },
+      { l: 'What Not to Say', v: r.what_not_to_say, red: true },
+      { l: 'Delivery Note', v: r.delivery_note }
+    ].filter(x => x.v);
+
+    if (grid_items.length) {
+      h += `<div class="intel_card"><div class="intel_grid">`;
+      grid_items.forEach(x => {
+        h += `<div><div class="i_lbl">${x.l}</div><div class="i_val ${x.red?'red':''}">${esc(x.v)}</div></div>`;
+      });
+      h += `</div></div>`;
+    }
+    if (r.why_it_works) h += whyWorks(r.why_it_works);
+  }
+
+  else if (id === 'ghost') {
+    if (r.psychology_read) h += intelSingle('Psychology Read', r.psychology_read);
+    h += `<div class="ghost_tl">`;
+    ['message_1','message_2','message_3'].forEach((mk) => {
+      const msg = r[mk];
+      if (!msg) return;
+      h += `<div class="ghost_row">
+        <div class="ghost_left">
+          <div class="ghost_dot"></div>
+          <div class="ghost_line"></div>
+        </div>
+        <div>
+          <div class="ghost_timing">${esc(msg.timing)}</div>
+          <div class="ghost_msg">
+            <div class="msg_text">${esc(msg.message)}</div>
+            <div style="margin-top:9px;">
+              <button class="copy_btn" onclick="docp('${escA(msg.message)}',this)">Copy</button>
+            </div>
+          </div>
+        </div>
+      </div>`;
+    });
+    h += `</div>`;
+    if (r.why_it_works) h += whyWorks(r.why_it_works);
+  }
+
+  else if (id === 'seller') {
+    h += bubble('Your Response', r.response_message);
+    const items = [
+      { l:'What Not to Say', v:r.what_not_to_say, red:true },
+      { l:'Next 24-Hour Action', v:r.next_24hr_action },
+      { l:'Seller Psychology', v:r.seller_psychology },
+      { l:'The Real Conversation', v:r.real_conversation }
+    ].filter(x => x.v);
+
+    if (items.length) {
+      h += `<div class="intel_card" style="margin-top:10px;"><div class="intel_grid">`;
+      items.forEach(x => {
+        h += `<div><div class="i_lbl">${x.l}</div><div class="i_val ${x.red?'red':''}">${esc(x.v)}</div></div>`;
+      });
+      h += `</div></div>`;
+    }
+    if (r.why_it_works) h += whyWorks(r.why_it_works);
+  }
+
+  else if (id === 'appointment') {
+    h += `<div class="intel_card">
+      <div class="intel_title">Seller Intelligence Profile</div>
+      <div class="intel_grid">`;
+    [['Dominant Motivation',r.dominant_motivation],['Hidden Fear',r.hidden_fear],['Decision Style',r.decision_style],['The One Question',r.the_one_question]]
+      .filter(([,v])=>v).forEach(([l,v]) => {
+        h += `<div><div class="i_lbl">${l}</div><div class="i_val">${esc(v)}</div></div>`;
+      });
+    h += `</div></div>`;
+
+    [['Opening Statement',r.opening_statement],['Commission Defense',r.commission_defense],['Ask for the Listing',r.ask_for_listing]]
+      .filter(([,v])=>v).forEach(([l,v]) => {
+        h += bubble(l, v);
+      });
+    if (r.why_it_works) h += whyWorks(r.why_it_works);
+  }
+
+  else if (id === 'close') {
+    if (r.buyer_type_read) h += intelSingle('Buyer Type Read', r.buyer_type_read);
+
+    [['Primary Close',r.primary_close],['Alternative Close',r.alternative_close],['The One Question if Still Undecided',r.the_one_question]]
+      .filter(([,v])=>v).forEach(([l,v]) => {
+        h += bubble(l, v);
+      });
+
+    if (r.what_not_to_say) h += intelSingle('What Not to Say', r.what_not_to_say, true);
+    if (r.why_it_works) h += whyWorks(r.why_it_works);
+  }
+
+  h += `<div class="out_footer">
+    <button class="copy_all_btn" onclick="copyAll()">Copy All</button>
+    <button class="save_btn" id="save_btn" onclick="saveSession()">Save to Session</button>
+    <button class="clr_btn" onclick="clearOut()">Clear</button>
+  </div>`;
+
+  out.innerHTML = h;
+  setTimeout(() => out.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 80);
+}
+
+// ==========================================
+// HELPERS
+// ==========================================
+function bubble(label, text) {
+  return `<div class="msg_bubble" style="margin-bottom:10px;">
+    <div class="mb_head">
+      <div class="mb_tag">${label}</div>
+      <button class="copy_btn" onclick="docp('${escA(text)}',this)">Copy</button>
+    </div>
+    <div class="msg_text">${esc(text)}</div>
+  </div>`;
+}
+
+function intelSingle(label, val, red = false) {
+  return `<div class="intel_card" style="margin-top:10px;margin-bottom:10px;">
+    <div class="i_lbl">${label}</div>
+    <div class="msg_text" style="font-size:12px;margin-top:5px;${red?'color:var(--red);':''}">${esc(val)}</div>
+  </div>`;
+}
+
+function whyWorks(val) {
+  return `<div class="why_works" onclick="this.classList.toggle('open')">
+    <div class="ww_head">
+      <div class="ww_lbl">◈ Why This Works</div>
+      <div class="ww_arrow">↓</div>
+    </div>
+    <div class="ww_body"><div class="ww_body_inner">${esc(val)}</div></div>
+  </div>`;
+}
+
+function docp(text, btn) {
+  navigator.clipboard.writeText(text.replace(/\\n/g, '\n')).then(() => {
+    btn.classList.add('copied');
+    const orig = btn.textContent;
+    btn.textContent = '✓ Copied';
+    setTimeout(() => { btn.classList.remove('copied'); btn.textContent = orig; }, 1800);
+  });
+}
+
+function copyAll() {
+  if (!lastOut) return;
+  const text = Object.entries(lastOut).map(([k,v]) => {
+    const label = k.replace(/_/g,' ').toUpperCase();
+    if (typeof v === 'object') return `${label}\n${JSON.stringify(v)}`;
+    return `${label}\n${v}`;
+  }).join('\n\n');
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.copy_all_btn');
+    const orig = btn.textContent;
+    btn.textContent = '✓ All Copied';
+    setTimeout(() => btn.textContent = orig, 2200);
+  });
+}
+
+function clearOut() {
+  const out = document.getElementById('out');
+  out.classList.remove('visible');
+  out.innerHTML = '';
+  lastOut = null;
+}
+
+// ==========================================
+// SESSION
+// ==========================================
+function saveSession() {
+  if (!lastOut) return;
+  const m = MODS.find(x => x.id === activeId);
+  const now = new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
+
+  const preview = Object.values(lastOut)
+    .filter(v => typeof v === 'string')
+    .slice(0,2)
+    .join('\n\n')
+    .substring(0,180) + '...';
+
+  session.push({ modName: m.name, modNum: m.num, time: now, data: lastOut, preview });
+  updateBadge();
+
+  const btn = document.getElementById('save_btn');
+  if (btn) {
+    btn.classList.add('saved');
+    btn.textContent = '✓ Saved';
+    setTimeout(() => { btn.classList.remove('saved'); btn.textContent = 'Save to Session'; }, 1800);
+  }
+}
+
+function updateBadge() {
+  const badge = document.getElementById('s_badge');
+  if (session.length > 0) { badge.textContent = session.length; badge.style.display = 'flex'; }
+  else badge.style.display = 'none';
+}
+
+function toggleSession() {
+  const ov = document.getElementById('s_overlay');
+  ov.classList.toggle('open');
+  if (ov.classList.contains('open')) renderSessionBody();
+}
+
+function closeSessionOut(e) {
+  if (e.target === e.currentTarget) document.getElementById('s_overlay').classList.remove('open');
+}
+
+function renderSessionBody() {
+  const body = document.getElementById('s_body');
+  if (!session.length) {
+    body.innerHTML = `<div class="s_empty">Nothing saved yet.<br><br>Generate outputs and hit "Save to Session" to build your lead playbook here.</div>`;
+    return;
+  }
+  body.innerHTML = session.map(item => `
+    <div class="s_item">
+      <div class="s_item_top">
+        <div class="s_item_mod">${item.modNum} ${item.modName}</div>
+        <div class="s_item_time">${item.time}</div>
+      </div>
+      <div class="s_preview">${esc(item.preview)}</div>
+    </div>
+  `).join('');
+}
+
+function copySession() {
+  if (!session.length) return;
+  const text = session.map(item => {
+    const hdr = `=== ${item.modName.toUpperCase()} — ${item.time} ===`;
+    const body = Object.entries(item.data).map(([k,v]) => {
+      return `${k.replace(/_/g,' ')}: ${typeof v === 'object' ? JSON.stringify(v) : v}`;
+    }).join('\n');
+    return `${hdr}\n${body}`;
+  }).join('\n\n');
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.s_copy_all');
+    btn.textContent = '✓ Copied';
+    setTimeout(() => btn.textContent = 'Copy All to Clipboard', 2200);
+  });
+}
+
+function clearSession() {
+  session = [];
+  updateBadge();
+  renderSessionBody();
+}
+
+function esc(s) {
+  if (!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function escA(s) {
+  if (!s) return '';
+  return String(s).replace(/'/g,"&#39;").replace(/\n/g,'\\n').replace(/\r/g,'');
+}
+</script>
+</body>
+</html>
